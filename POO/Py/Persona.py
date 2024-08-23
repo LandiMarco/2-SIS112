@@ -15,8 +15,9 @@ class Persona:
         print(f"Estoy estudiando {self.carrera}.")
 
 # Crear una instancia de la clase persona
-personal = Persona("Juan", 20, "Medicina")
-
+persona1 = Persona("Juan", 20, "Medicina")
+persona2 = Persona("Samuel", 18, "Ingenieria industrial")
 #Llamar a los metodos
-personal.saludar()
-personal.estudiar()
+persona1.saludar()
+persona2.saludar()
+#persona1.estudiar()
