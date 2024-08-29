@@ -6,7 +6,7 @@ class Persona {
     this.universidad = universidad;
   }
 
-  // Método avanzado en clases
+  // Metodo avanzado en clases
   saludar() {
     return 'Hola, soy ' + this.nombre + ', y tengo ' + this.edad + ' años.';
   }
@@ -23,13 +23,13 @@ class Persona {
     return 'Estoy estudiando en la ' + this.universidad;
   }
 
-  // Métodos para modificar los atributos
+  // Metodos para modificar los atributos
   ModificarNombre() {
     const nuevoNombre = prompt("Ingresa tu nombre");
     if (this.validarTexto(nuevoNombre)) {
       this.nombre = nuevoNombre;
     } else {
-      alert("Caracter no válido, ingrese solamente letras");
+      alert("Caracter no valido, ingrese solamente letras");
     }
     return this.saludar();
   }
@@ -39,7 +39,7 @@ class Persona {
     if (nuevaEdad >= 0 && !isNaN(nuevaEdad)) {
       this.edad = nuevaEdad;
     } else {
-      alert("Edad no válida, ingrese un número positivo");
+      alert("Edad no valida, ingrese un numero positivo");
     }
     return `¡Felicidades! Tienes ${this.edad} años.`;
   }
@@ -49,7 +49,7 @@ class Persona {
     if (this.validarTexto(nuevaCarrera)) {
       this.carrera = nuevaCarrera;
     } else {
-      alert("Caracter no válido, ingrese solamente letras");
+      alert("Caracter no valido, ingrese solamente letras");
     }
     return this.estudiar();
   }
@@ -59,12 +59,12 @@ class Persona {
     return 'Estas estudiando en la ' + this.universidad;
   }
 
-  // Método para validar texto
+  // Metodo para validar texto
   validarTexto(texto) {
     return /^[a-zA-Z\s]+$/.test(texto);
   }
 
-  // Métodos para eliminar los atributos
+  // Metodos para eliminar los atributos
   EliminarNombre() {
     this.nombre = undefined;
   }
@@ -83,7 +83,7 @@ class Persona {
 }
 
 // Crear una instancia de la clase Persona
-const persona = new Persona('Marco', 19, 'Ingeniería industrial', 'Universidad Católica Boliviana');
+const persona = new Persona('Marco', 19, 'Ingenieria industrial', 'Universidad Catolica Boliviana');
 
 // Inicializar los elementos HTML
 const saludar = document.getElementById('saludar');
@@ -91,62 +91,62 @@ const edad = document.getElementById('edad');
 const carrera = document.getElementById('carrera');
 const universidad = document.getElementById('universidad');
 
-// Función para saludar
+// Funcion para saludar
 function botonSaludar() {
   saludar.textContent = persona.saludar();
 }
 
-// Función para cumpleaños
+// Funcion para cumpleaños
 function botonCumpleanios() {
   edad.textContent = persona.cumpleanios();
 }
 
-// Función para estudiar
+// Funcion para estudiar
 function botonEstudiar() {
   carrera.textContent = persona.estudiar();
 }
 
-// Función para mostrar universidad
+// Funcion para mostrar universidad
 function botonUniversidad() {
   universidad.textContent = persona.mostrarUniversidad();
 }
 
-// Función para modificar nombre
+// Funcion para modificar nombre
 function botonModificarNombre(){
   saludar.textContent = persona.ModificarNombre();
 }
 
-// Función para modificar edad
+// Funcion para modificar edad
 function botonModificarEdad(){
   edad.textContent = persona.ModificarEdad();
 }
 
-// Función para modificar carrera
+// Funcion para modificar carrera
 function botonModificarCarrera(){
   carrera.textContent = persona.ModificarCarrera();
 }
 
-// Función para modificar universidad
+// Funcion para modificar universidad
 function botonModificarUniversidad(){
   universidad.textContent = persona.ModificarUniversidad();
 }
 
-// Función para eliminar nombre
+// Funcion para eliminar nombre
 function botonEliminarNombre(){
-  saludar.textContent = ''; // Eliminar el texto del saludo
+  saludar.textContent = ''; 
 }
 
-// Función para eliminar edad
+// Funcion para eliminar edad
 function botonEliminarEdad(){
   edad.textContent = ''; 
 }
 
-// Función para eliminar carrera
+// Funcion para eliminar carrera
 function botonEliminarCarrera(){
   carrera.textContent = ''; 
 }
 
-// Función para eliminar universidad
+// Funcion para eliminar universidad
 function botonEliminarUniversidad(){
   universidad.textContent = ''; 
 }
