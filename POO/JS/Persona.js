@@ -1,28 +1,152 @@
 class Persona {
-    constructor(nombre, edad, carrera) {
-      this.nombre = nombre;
-      this.edad = edad;
-      this.carrera = carrera;
-    }
-  
-    saludar() {
-      console.log('Hola, mi nombre es ' + this.nombre + ' y tengo ' + this.edad +' años.');//print
-    }
-  
-    cumpleaños() {
-      this.edad = this.edad + 1;
-      console.log('¡Feliz cumpleaños! Ahora tengo ' + this.edad + ' años.');
-    }
-  
-    estudiar() {
-      console.log('Estoy estudiando ' + this.carrera);
-    }
+  constructor(nombre, edad, carrera, universidad) {
+    this.nombre = nombre;
+    this.edad = edad;
+    this.carrera = carrera;
+    this.universidad = universidad;
   }
 
-  function SaludoPersona1(){
-    // Crear una instancia de la clase Persona
-    //declara la variable usando: var / const / let    
-    const persona1 = new Persona("Ana", 22, "Ingeniería Informática"); 
-    // Llamar a los métodos
-    persona1.saludar();
+  // Método avanzado en clases
+  saludar() {
+    return 'Hola, soy ' + this.nombre + ', y tengo ' + this.edad + ' años.';
   }
+
+  cumpleanios() {
+    return 'Yo tengo ' + this.edad + ' años.';
+  }
+
+  estudiar() {
+    return 'Estoy estudiando ' + this.carrera;
+  }
+
+  mostrarUniversidad() {
+    return 'Estoy estudiando en la ' + this.universidad;
+  }
+
+  // Métodos para modificar los atributos
+  ModificarNombre() {
+    const nuevoNombre = prompt("Ingresa tu nombre");
+    if (this.validarTexto(nuevoNombre)) {
+      this.nombre = nuevoNombre;
+    } else {
+      alert("Caracter no válido, ingrese solamente letras");
+    }
+    return this.saludar();
+  }
+
+  ModificarEdad(){
+    const nuevaEdad = Number(prompt("Ingresa tu edad"));
+    if (nuevaEdad >= 0 && !isNaN(nuevaEdad)) {
+      this.edad = nuevaEdad;
+    } else {
+      alert("Edad no válida, ingrese un número positivo");
+    }
+    return `¡Felicidades! Tienes ${this.edad} años.`;
+  }
+
+  ModificarCarrera() {
+    const nuevaCarrera = prompt("Ingresa tu carrera");
+    if (this.validarTexto(nuevaCarrera)) {
+      this.carrera = nuevaCarrera;
+    } else {
+      alert("Caracter no válido, ingrese solamente letras");
+    }
+    return this.estudiar();
+  }
+
+  ModificarUniversidad(){
+    this.universidad = prompt("Ingresa tu universidad");
+    return 'Estas estudiando en la ' + this.universidad;
+  }
+
+  // Método para validar texto
+  validarTexto(texto) {
+    return /^[a-zA-Z\s]+$/.test(texto);
+  }
+
+  // Métodos para eliminar los atributos
+  EliminarNombre() {
+    this.nombre = undefined;
+  }
+
+  EliminarEdad(){
+    this.edad = undefined;
+  }
+
+  EliminarCarrera(){
+    this.carrera = undefined;
+  }
+
+  EliminarUniversidad(){
+    this.universidad = undefined;
+  }
+}
+
+// Crear una instancia de la clase Persona
+const persona = new Persona('Marco', 19, 'Ingeniería industrial', 'Universidad Católica Boliviana');
+
+// Inicializar los elementos HTML
+const saludar = document.getElementById('saludar');
+const edad = document.getElementById('edad');
+const carrera = document.getElementById('carrera');
+const universidad = document.getElementById('universidad');
+
+// Función para saludar
+function botonSaludar() {
+  saludar.textContent = persona.saludar();
+}
+
+// Función para cumpleaños
+function botonCumpleanios() {
+  edad.textContent = persona.cumpleanios();
+}
+
+// Función para estudiar
+function botonEstudiar() {
+  carrera.textContent = persona.estudiar();
+}
+
+// Función para mostrar universidad
+function botonUniversidad() {
+  universidad.textContent = persona.mostrarUniversidad();
+}
+
+// Función para modificar nombre
+function botonModificarNombre(){
+  saludar.textContent = persona.ModificarNombre();
+}
+
+// Función para modificar edad
+function botonModificarEdad(){
+  edad.textContent = persona.ModificarEdad();
+}
+
+// Función para modificar carrera
+function botonModificarCarrera(){
+  carrera.textContent = persona.ModificarCarrera();
+}
+
+// Función para modificar universidad
+function botonModificarUniversidad(){
+  universidad.textContent = persona.ModificarUniversidad();
+}
+
+// Función para eliminar nombre
+function botonEliminarNombre(){
+  saludar.textContent = ''; // Eliminar el texto del saludo
+}
+
+// Función para eliminar edad
+function botonEliminarEdad(){
+  edad.textContent = ''; 
+}
+
+// Función para eliminar carrera
+function botonEliminarCarrera(){
+  carrera.textContent = ''; 
+}
+
+// Función para eliminar universidad
+function botonEliminarUniversidad(){
+  universidad.textContent = ''; 
+}
