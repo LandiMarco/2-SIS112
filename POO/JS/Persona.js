@@ -36,7 +36,7 @@ class Persona {
 
   ModificarEdad(){
     const nuevaEdad = Number(prompt("Ingresa tu edad"));
-    if (nuevaEdad >= 0 && !isNaN(nuevaEdad)) {
+    if (nuevaEdad >= 0) {
       this.edad = nuevaEdad;
     } else {
       alert("Edad no valida, ingrese un numero positivo");
