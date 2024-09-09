@@ -106,8 +106,12 @@ class CrearMateria {
     }
 
     modificarPrerequisito() {
-        const nuevoPrerequisito = prompt("Ingresa el nuevo prerequisito de la materia");
-        this.prerequisito = nuevoPrerequisito;
+        const nuevoPrerequisito = prompt("Ingresa tu nuevo prerequisito de la materia: ");
+        if (this.validarTexto(nuevoPrerequisito)) {
+            this.prerequisito = nuevoPrerequisito;
+        } else {
+            alert("Caracter no válido, ingrese solamente letras");
+        }
         return this.mostrarPrerequisito();
     }
 
