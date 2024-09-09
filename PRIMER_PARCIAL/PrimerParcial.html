@@ -12,14 +12,13 @@
                 Primer Parcial
             </div>
             <div class="card-body">
-
-                <h1> Crear</h1>
-                <button class="btn btn-primary" onclick="seleccionarMateria(materia1)">Materia 1 </button>
-                <button class="btn btn-primary" onclick="seleccionarMateria(materia2)">Materia 2 </button>
-                <button class="btn btn-primary" onclick="seleccionarMateria(materia3)">Materia 3 </button>
-                <button class="btn btn-primary" onclick="seleccionarMateria(materia4)">Materia 4 </button>
-                <button class="btn btn-primary" onclick="seleccionarMateria(materia5)">Materia 5 </button>
-                <button class="btn btn-primary" onclick="seleccionarMateria(materia6)">Materia 6 </button>
+                <h1>Seleccionar Materia</h1>
+                <button class="btn btn-primary" onclick="seleccionarMateria(materia1)">Materia 1</button>
+                <button class="btn btn-primary" onclick="seleccionarMateria(materia2)">Materia 2</button>
+                <button class="btn btn-primary" onclick="seleccionarMateria(materia3)">Materia 3</button>
+                <button class="btn btn-primary" onclick="seleccionarMateria(materia4)">Materia 4</button>
+                <button class="btn btn-primary" onclick="seleccionarMateria(materia5)">Materia 5</button>
+                <button class="btn btn-primary" onclick="seleccionarMateria(materia6)">Materia 6</button>
 
                 <h2>Datos de la Materia</h2>
                 <p class="card-text" id="Materia"></p>
@@ -31,9 +30,12 @@
                 <p class="card-text" id="carrera"></p>
                 <p class="card-text" id="universidad"></p>
                 <p class="card-text" id="cantidadInscritos"></p>
-                
- 
-                <h1> Modificar mensajes </h1>
+                <p class="card-text" id="LatitudLongitud"></p>
+                <p class="card-text" id="temas"></p>
+                <p class="card-text" id="calificacionMinima"></p>
+                <p class="card-text" id="modalidad"></p>
+
+                <h1>Modificar Datos</h1>
                 <button class="btn btn-secondary" onclick="modificarNombreMateria()">Modificar Nombre</button>
                 <button class="btn btn-secondary" onclick="modificarSigla()">Modificar Sigla</button>
                 <button class="btn btn-secondary" onclick="modificarDocente()">Modificar Docente</button>
@@ -43,8 +45,12 @@
                 <button class="btn btn-secondary" onclick="modificarCarrera()">Modificar Carrera</button>
                 <button class="btn btn-secondary" onclick="modificarUniversidad()">Modificar Universidad</button>
                 <button class="btn btn-secondary" onclick="modificarInscritos()">Modificar Inscritos</button>
+                <button class="btn btn-secondary" onclick="modificarLatitudLongitud()">Modificar Latitud/Longitud</button>
+                <button class="btn btn-secondary" onclick="modificarTemas()">Modificar Temas</button>
+                <button class="btn btn-secondary" onclick="modificarCalificacionMinima()">Modificar Calificación Mínima</button>
+                <button class="btn btn-secondary" onclick="modificarModalidad()">Modificar Modalidad</button>
 
-                <h1> Eliminar mensajes </h1>
+                <h1>Eliminar Datos</h1>
                 <button class="btn btn-primary" onclick="eliminarNombreMateria()">Eliminar Nombre</button>
                 <button class="btn btn-primary" onclick="eliminarSigla()">Eliminar Sigla</button>
                 <button class="btn btn-primary" onclick="eliminarDocente()">Eliminar Docente</button>
@@ -54,11 +60,15 @@
                 <button class="btn btn-primary" onclick="eliminarCarrera()">Eliminar Carrera</button>
                 <button class="btn btn-primary" onclick="eliminarUniversidad()">Eliminar Universidad</button>
                 <button class="btn btn-primary" onclick="eliminarInscritos()">Eliminar Inscritos</button>
+                <button class="btn btn-primary" onclick="eliminarLatitudLongitud()">Eliminar Latitud/Longitud</button>
+                <button class="btn btn-primary" onclick="eliminarTemas()">Eliminar Temas</button>
+                <button class="btn btn-primary" onclick="eliminarCalificacionMinima()">Eliminar Calificación Mínima</button>
+                <button class="btn btn-primary" onclick="eliminarModalidad()">Eliminar Modalidad</button>
             </div>
         </div>
     </div>
- 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="PrimerParcial.js"></script>
 </body>
+</html>
