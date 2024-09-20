@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manipulación de Cadenas</title>
+    <style>
+        /* Estilo base */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #232526, #414345); /* Fondo oscuro con degradado */
+            color: #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0 20px;
+            overflow: hidden;
+        }
+
+        /* Efecto de iluminación alrededor del contenido */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1), transparent 70%);
+            z-index: -1;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        h1 {
+            font-size: 4em;
+            margin-bottom: 40px;
+            color: #ffe259;
+            text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.6), 0px 0px 20px rgba(255, 225, 89, 0.9);
+        }
+
+        /* Campo de entrada */
+        input {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            backdrop-filter: blur(10px);
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+            outline: none;
+        }
+
+        /* Contenedor de botones */
+        .botones-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Grid flexible de botones */
+            gap: 15px; /* Espacio entre los botones */
+            width: 100%;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        /* Botones */
+        button {
+            background: linear-gradient(135deg, #ff512f, #dd2476);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            color: #fff;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4), inset 0 0 10px rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            letter-spacing: 1px;
+            width: 100%; /* Se ajustan al ancho del contenedor */
+        }
+
+        button:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* Div de resultado */
+        #resultado {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
+            font-size: 1.6em;
+            color: #e6e6e6;
+            text-align: center;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #resultado:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Adaptabilidad */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3em;
+            }
+
+            button {
+                padding: 12px 20px;
+                font-size: 1em;
+            }
+
+            input {
+                font-size: 1em;
+                padding: 12px;
+            }
+
+            #resultado {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Manipulación de Cadenas</h1>
+
+    <input type="text" id="inputCadena" placeholder="Introduce una cadena especial..." />
+
+    <div class="botones-container">
+        <button onclick="ejecutar('getCadena')">Obtener Cadena</button>
+        <button onclick="ejecutar('concatenar')">Concatenar</button>
+        <button onclick="ejecutar('invertir')">Invertir</button>
+        <button onclick="ejecutar('esVacia')">¿Es Vacía?</button>
+        <button onclick="ejecutar('contiene')">Contiene Subcadena</button>
+        <button onclick="ejecutar('comienzaCon')">Comienza Con</button>
+        <button onclick="ejecutar('terminaCon')">Termina Con</button>
+        <button onclick="ejecutar('longitud')">Longitud</button>
+        <button onclick="ejecutar('aMayusculas')">A Mayúsculas</button>
+        <button onclick="ejecutar('aMinusculas')">A Minúsculas</button>
+    </div>
+
+    <div id="resultado">Aquí se mostrará el resultado...</div>
+
+    <script src="cadena.js"></script>
+
+</body>
+</html>

@@ -45,6 +45,38 @@ class Entero {
     esNegativo() {
         return this.Num < 0 ? "Negativo" : "No es negativo";
     }
+
+    esPerfecto() {
+        if (this.Num <= 0) return false;
+        
+        let suma = 0;
+        
+        for (let i = 1; i < this.Num; i++) {
+            if (this.Num % i === 0) {
+                suma += i;
+            }
+        }
+        return suma === this.Num;
+    }
+
+    // CLASS - Saber si es numero primo
+    esPrimo() {
+        const n = this.Num;
+        if (n <= 1) return "No es primo";
+        if (n <= 3) return "Es primo";
+        if (n % 2 === 0 || n % 3 === 0) return "No es primo";
+        for (let i = 5; i * i <= n; i += 6) {
+            if (n % i === 0 || n % (i + 2) === 0) return "No es primo";
+        }
+        return "Es primo";
+    }
+
+    mostrarFactorial() {
+        const factorial = this.calcularFactorial();
+        const mensaje = "El factorial de " + this.Num + " es " + factorial;
+        this.showResultado(mensaje);
+        console.log(mensaje);
+    }
 }
 
 // Las funciones = botones HTML
@@ -90,4 +122,21 @@ function esNegativoNum() {
     var mensaje = "El número es " + respuesta;
     ClaseEntero.showResultado(mensaje);
     console.log(mensaje);
+}
+
+function esPerfecto(){
+    var respuesta = ClaseEntero.esPerfecto();
+    var mensaje =  respuesta ? "Es perfecto": "No es perfecto"
+    ClaseEntero.showResultado(mensaje)
+}
+
+function esPrimo(){
+    var respuesta = ClaseEntero.esPrimo();
+    var mensaje = "El número " + respuesta;
+    ClaseEntero.showResultado(mensaje);
+    console.log(mensaje);
+}
+
+function calcularFactorial() {
+    ClaseEntero.mostrarFactorial();
 }
