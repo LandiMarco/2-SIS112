@@ -4,266 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landivar Marco</title>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* General Styles */
         body {
             background: linear-gradient(to bottom right, #6a11cb, #2575fc);
             color: white;
             font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-            line-height: 1.6;
         }
-
-        /* Header Styles */
         .header {
-            padding: 80px;
+            padding: 40px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s;
-        }
-
-        .header:hover {
-            transform: translateY(-5px);
-        }
-
-        .header h1 {
-            font-size: 3.5rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
-        }
-
-        .header p {
-            font-size: 1.5rem;
-            margin-top: 10px;
-            opacity: 0.9;
-        }
-
-        /* Info Section */
-        .info {
-            text-align: center;
-            margin: 30px 0;
-            padding: 30px;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.6);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s;
-        }
-
-        .info:hover {
-            transform: scale(1.02);
-        }
-
-        .info h3 {
-            font-size: 2.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
             margin-bottom: 20px;
-            text-decoration: underline;
         }
-
-        .info p {
-            font-size: 1.2rem;
-            margin: 5px 0;
-        }
-
-        /* Card Styles */
         .card {
             margin: 20px;
-            border-radius: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
         }
-
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.15);
-            transition: transform 0.3s;
-            transform: scale(1.1);
-            z-index: 0;
-        }
-
-        .card:hover::before {
-            transform: scale(1);
-        }
-
-        .card-body {
-            position: relative;
-            z-index: 1;
-            padding: 40px;
-        }
-
-        .card-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
-        }
-
-        .card-text {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            opacity: 0.9;
-        }
-
-        /* Button Styles */
         .btn-custom {
             background-color: #ff4757;
             color: white;
-            border-radius: 30px;
-            padding: 12px 25px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
-            border: none;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            transition: background-color 0.3s;
         }
-
         .btn-custom:hover {
             background-color: #e84118;
-            transform: translateY(-2px);
         }
-
-        /* Responsive Styles */
-        @media (max-width: 1200px) {
-            .header {
-                padding: 60px;
-            }
-
-            .header h1 {
-                font-size: 3rem;
-            }
-
-            .header p {
-                font-size: 1.2rem;
-            }
-
-            .info h3 {
-                font-size: 2rem;
-            }
-
-            .info p {
-                font-size: 1rem;
-            }
-
-            .card-title {
-                font-size: 1.8rem;
-            }
-
-            .card-text {
-                font-size: 1rem;
-            }
-
-            .btn-custom {
-                font-size: 1rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                padding: 40px;
-            }
-
-            .header h1 {
-                font-size: 2.5rem;
-            }
-
-            .header p {
-                font-size: 1rem;
-            }
-
-            .info h3 {
-                font-size: 1.5rem;
-            }
-
-            .info p {
-                font-size: 0.9rem;
-            }
-
-            .card-title {
-                font-size: 1.5rem;
-            }
-
-            .card-text {
-                font-size: 0.9rem;
-            }
-
-            .btn-custom {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* Footer Styles */
-        .footer {
+        .info {
             text-align: center;
-            padding: 30px;
-            background: rgba(0, 0, 0, 0.7);
-            position: relative;
-            margin-top: 40px;
-            border-radius: 15px;
-        }
-
-        .footer p {
-            margin: 0;
-            color: #ddd;
-            font-size: 1.2rem;
-        }
-
-        /* Additional Styles */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        h1, h3 {
-            text-align: center;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        p {
-            text-align: center;
-            font-size: 1.1rem;
-            line-height: 1.5;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .fade-in {
-            animation: fadeIn 1s ease-in-out forwards;
-        }
-
-        .transition {
-            transition: all 0.3s ease;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
-<body class="fade-in">
+<body>
 
     <div class="header">
         <h1>Bienvenido a Nuestras Aplicaciones</h1>
@@ -280,7 +65,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Enteros</h5>
@@ -289,7 +74,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Cadenas</h5>
@@ -298,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card text-center">
                     <div class="card-body">
                         <h5 class="card-title">Lista de Enteros</h5>
@@ -307,11 +92,16 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">Lista de Cadenas</h5>
+                        <p class="card-text">Manipula y organiza listas de cadenas de texto fácilmente.</p>
+                        <a href="http://landivar.somee.com/lista-cadena.html" class="btn btn-custom">Ver Aplicación</a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="footer">
-        <p>&copy; 2024 Marco Landivar. Todos los derechos reservados.</p>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

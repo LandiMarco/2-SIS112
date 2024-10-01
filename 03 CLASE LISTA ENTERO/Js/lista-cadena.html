@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cadenas - FNaF 3</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #000;
+            overflow: hidden;
+            animation: flicker 3s infinite alternate;
+        }
+
+        @keyframes flicker {
+            0% {
+                background-color: #000;
+            }
+            10% {
+                background-color: #111;
+            }
+            20% {
+                background-color: #000;
+            }
+            30% {
+                background-color: #111;
+            }
+            40% {
+                background-color: #000;
+            }
+            50% {
+                background-color: #111;
+            }
+            60% {
+                background-color: #000;
+            }
+            70% {
+                background-color: #111;
+            }
+            80% {
+                background-color: #000;
+            }
+            90% {
+                background-color: #111;
+            }
+            100% {
+                background-color: #000;
+            }
+        }
+
+        /* Efecto de estática */
+        .static-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://previews.123rf.com/images/ggalyna/ggalyna1712/ggalyna171200120/91808338-glitch-texture-vector-illustration-resumen-de-patrones-sin-fisuras-de-la-raya-adorno-para-dise%C3%B1o.jpg');
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+            animation: staticEffect 0.1s infinite;
+        }
+
+        @keyframes staticEffect {
+            0% {
+                opacity: 0.15;
+            }
+            50% {
+                opacity: 0.2;
+            }
+            100% {
+                opacity: 0.15;
+            }
+        }
+
+        .container {
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 255, 0, 0.2);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #0f0;
+            margin-bottom: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #0f0;
+        }
+
+        .input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 12px;
+            border: 2px solid #0f0;
+            background-color: #111;
+            color: #0f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #ff0000;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 16px;
+            background-color: #00bfa5;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            flex: 1;
+        }
+
+        button:hover {
+            background-color: #00897b;
+        }
+
+        .list-container {
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul li {
+            padding: 12px;
+            background-color: #1b1b1b;
+            border: 1px solid #0f0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            color: #0f0;
+            text-align: left;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        ul li:hover {
+            background-color: #111;
+        }
+
+        .input-container button.ordenar-btn {
+            background-color: #ffab00;
+            color: white;
+        }
+
+        .input-container button.ordenar-btn:hover {
+            background-color: #ff6f00;
+        }
+
+        .input-container button:disabled {
+            background-color: #ddd;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="static-effect"></div> <!-- Efecto de estática -->
+
+    <div class="container">
+        <h1>Lista de Cadenas</h1>
+        <div class="input-container">
+            <input type="text" id="cadenaInput" placeholder="Ingresa una cadena">
+            <button onclick="agregarCadena()">Agregar</button>
+        </div>
+        <div class="input-container">
+            <input type="text" id="eliminarInput" placeholder="Cadena a eliminar">
+            <button onclick="eliminarCadena()">Eliminar</button>
+        </div>
+        <div class="input-container">
+            <input type="text" id="buscarInput" placeholder="Cadena a buscar">
+            <button onclick="buscarCadena()">Buscar</button>
+        </div>
+        <div class="input-container">
+            <button class="ordenar-btn" onclick="ordenarCadenas()">Ordenar</button>
+        </div>
+        <div class="list-container">
+            <h2>Lista actual:</h2>
+            <ul id="listaCadenas"></ul>
+        </div>
+    </div>
+
+    <script src="lista-cadenas.js"></script>
+    <script>
+        function agregarCadena() {
+            const valor = document.getElementById('cadenaInput').value;
+            if (valor) {
+                miLista.agregar(valor);
+                document.getElementById('cadenaInput').value = '';
+            }
+        }
+
+        function eliminarCadena() {
+            const valor = document.getElementById('eliminarInput').value;
+            if (valor) {
+                miLista.eliminar(valor);
+                document.getElementById('eliminarInput').value = '';
+            }
+        }
+
+        function buscarCadena() {
+            const valor = document.getElementById('buscarInput').value;
+            if (valor) {
+                miLista.buscar(valor);
+            }
+        }
+
+        function ordenarCadenas() {
+            miLista.ordenar();
+        }
+    </script>
+
+</body>
+</html>
