@@ -4,37 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Tanks 2D - Página de Inicio</title>
+    <title>Tanks 2D - Animación</title>
     <style>
         body {
-            font-family: 'Press Start 2P', cursive; /* Fuente de estilo pixel art */
+            font-family: 'Press Start 2P', cursive;
             background-color: #000;
-            color: #fff;
             margin: 0;
             padding: 0;
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start; /* Cambiado a flex-start para alinear los elementos arriba */
             height: 100vh;
-            background-image: url('fondo-pixelado.png'); /* Fondo retro pixelado */
+            background-image: url('2 tanques disparando.png'); /* Usa la imagen que te proporcioné aquí */
             background-size: cover;
             background-position: center;
-            image-rendering: pixelated; /* Estilo de renderizado para 8 bits */
+            image-rendering: pixelated;
         }
 
         h1 {
-            font-size: 50px;
-            margin-bottom: 20px;
             color: #ffcc00;
             text-shadow: 4px 4px #000;
-        }
-
-        p {
-            font-size: 16px;
-            margin-bottom: 40px;
-            color: #66ff66;
-            text-shadow: 2px 2px #000;
+            margin-top: 30px; /* Añadido margen superior para mover el título hacia arriba */
+            margin-bottom: 10px;
         }
 
         .btn-iniciar {
@@ -42,9 +35,7 @@
             background-color: #ff0000;
             color: #fff;
             font-size: 24px;
-            font-weight: bold;
             border: 3px solid #000;
-            border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
             box-shadow: 4px 4px #000;
@@ -55,6 +46,63 @@
             background-color: #ff5555;
         }
 
+        .tank {
+            position: absolute;
+            width: 50px;
+            height: 30px;
+            background-color: green;
+        }
+
+        .tank.left {
+            left: 10px;
+            bottom: 50px;
+        }
+
+        .tank.right {
+            right: 10px;
+            bottom: 50px;
+            background-color: red;
+        }
+
+        .bullet {
+            position: absolute;
+            width: 10px;
+            height: 5px;
+            background-color: yellow;
+            border-radius: 5px;
+        }
+
+        @keyframes shootLeft {
+            0% { left: 60px; }
+            100% { left: 90%; }
+        }
+
+        @keyframes shootRight {
+            0% { right: 60px; }
+            100% { right: 90%; }
+        }
+
+        .bullet.left {
+            animation: shootLeft 2s linear infinite;
+            bottom: 60px;
+        }
+
+        .bullet.right {
+            animation: shootRight 2s linear infinite;
+            bottom: 60px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 40px;
+            margin-top: -10px; /* Ajusta este margen para mover el texto hacia arriba */
+            color: #66ff66;
+            text-shadow: 2px 2px #000;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+            padding: 10px;
+            border-radius: 5px;
+        }
+
         footer {
             position: absolute;
             bottom: 10px;
@@ -62,57 +110,21 @@
             color: #ccc;
             font-size: 12px;
         }
-        
-        /* Estilo pixel art */
-        .pixel-container {
-            display: grid;
-            grid-template-columns: repeat(5, 20px);
-            grid-gap: 2px;
-            margin-top: 30px;
-        }
-
-        .pixel {
-            width: 20px;
-            height: 20px;
-            background-color: #ff0000;
-        }
-
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <h1>Tanks 2D</h1>
     <p>¡La batalla de tanques más retro está por comenzar!</p>
 
+    <div class="tank left"></div>
+    <div class="tank right"></div>
+    
+    <!-- Balas disparadas -->
+    <div class="bullet left"></div>
+    <div class="bullet right"></div>
+
     <button class="btn-iniciar" onclick="iniciarJuego()">Iniciar Juego</button>
-
-    <!-- Ejemplo de Pixel Art -->
-    <div class="pixel-container">
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-        <div class="pixel"></div>
-    </div>
 
     <footer>
         <p>© 2024 Tanks 2D. Todos los derechos reservados.</p>
@@ -120,8 +132,7 @@
 
     <script>
         function iniciarJuego() {
-            // Aquí puedes redirigir a la página del juego o iniciar el juego
-            window.location.href = "juego.html"; // Redirige a la página del juego
+            window.location.href = "tank-shoot.html";
         }
     </script>
 
