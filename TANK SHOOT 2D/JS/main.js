@@ -101,11 +101,61 @@ setInterval(() => {
     moveEnemyTankRandomly(enemyTank4); // Mueve el tanque enemy tank 4 de forma aleatoria a una velocidad de 300 milisegundos
 },300)
 
+const escenario = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+
+]
+
+const cellSize = 50;
+
+function drawEscenario(ctx, escenario){
+    for(let row = 0; row < escenario.length; row++){
+        for(let col = 0; col < escenario[row].length; col++){
+            const cell = escenario[row][col];
+            const x = col * game.anchoCelda;
+            const y = row * game.altoCelda;
+
+            switch(cell){
+                case 0: //Espacio vacio
+                    ctx.fillStyle = 'black';
+                    ctx.fillRect(x, y, game.anchoCelda, game.altoCelda);
+                    break;
+                case 1: //pared
+                    ctx.fillStyle = 'gray';
+                    ctx.fillRect(x, y, game.anchoCelda, game.altoCelda);
+                    //var wall = new Image();
+                    //wall.src = './ASSETS/pared.webp';
+                    //ctx.drawImage(wall, x, y , cellSize, CellSize);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+}
+
 
 // Lógica del juego (actualización de la pantalla)
 function updateGame() {
     // Limpiamos el canvas en cada frame
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawEscenario(ctx, escenario); //Dibujamos el escenario en el canvas.
     playerTank.drawTank(ctx);
     enemyTank1.drawEnemyTank(ctx); // Dibujamps el tanque enemigo
     enemyTank2.drawEnemyTank(ctx);
