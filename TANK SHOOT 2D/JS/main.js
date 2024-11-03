@@ -5,7 +5,7 @@ var utilsObj = new Utils();
 
 // Funciones para ajustar el tamaño del canvas a la ventana
 function resizeCanvas() {
-    canvas.width = window.innerWidth * 0.9;
+    canvas.width = window.innerHeight * 0.9;
     canvas.height = window.innerHeight * 0.9;
 
     canvas.width = utilsObj.RoundTablero(canvas.width); // Redondea el ancho a un multiplo de 50
@@ -91,15 +91,15 @@ function moveEnemyTankRandomly(enemyTank) {
 }
 
 //Hacemos que el tanque enemigo se mueva aleatoriamente cada 500 ms
-setInterval(() => {
-    moveEnemyTankRandomly(enemyTank1); // Mueve el tanque enemy tank 1 de forma aleatoria a una velocidad de 100 milisegundos
-    moveEnemyTankRandomly(enemyTank2); // Mueve el tanque enemy tank 2 de forma aleatoria a una velocidad de 100 milisegundos
-}, 100)
+//setInterval(() => {
+   // moveEnemyTankRandomly(enemyTank1); // Mueve el tanque enemy tank 1 de forma aleatoria a una velocidad de 100 milisegundos
+   // moveEnemyTankRandomly(enemyTank2); // Mueve el tanque enemy tank 2 de forma aleatoria a una velocidad de 100 milisegundos
+//}, 100)
 
-setInterval(() => {
-    moveEnemyTankRandomly(enemyTank3); // Mueve el tanque enemy tank 3 de forma aleatoria a una velocidad de 300 milisegundos
-    moveEnemyTankRandomly(enemyTank4); // Mueve el tanque enemy tank 4 de forma aleatoria a una velocidad de 300 milisegundos
-},300)
+//setInterval(() => {
+//    moveEnemyTankRandomly(enemyTank3); // Mueve el tanque enemy tank 3 de forma aleatoria a una velocidad de 300 milisegundos
+//    moveEnemyTankRandomly(enemyTank4); // Mueve el tanque enemy tank 4 de forma aleatoria a una velocidad de 300 milisegundos
+//},300)
 
 const escenario = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -119,6 +119,92 @@ const escenario = [
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 
 ]
+
+//13x15
+//fondo = 0 // cafe
+//Pared  = 1 // negro
+//Concetro = 1//Plomo
+
+const mapa = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 0, 2, 0, 2, 2, 2, 0, 0, 0, 0, 1],
+    [1, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 1],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 1],
+    [1, 2, 0, 0, 2, 2, 2, 2, 0, 0, 0, 0, 1],
+    [1, 2, 0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 1],
+    [1, 0, 0, 2, 2, 2, 2, 2, 2, 2, 0, 0, 1],
+    [1, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 0, 1],
+    [1, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 0, 1],
+    [1, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 1],
+    [1, 2, 0, 2, 0, 2, 2, 2, 0, 2, 0, 2, 1],
+    [1, 2, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 1],
+    [1, 0, 0, 2, 0, 0, 0, 0, 0, 2, 0, 2, 1],
+    [1, 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 2, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+]
+
+
+const mapa2 = [
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 2, 1],
+    [1, 2, 0, 2, 2, 2, 2, 2, 2, 2, 0, 2, 1],
+    [1, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 1],
+    [1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1],
+    [1, 0, 2, 0, 0, 2, 2, 2, 0, 0, 2, 0, 1],
+    [1, 0, 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1],
+    [1, 0, 2, 2, 2, 0, 2, 0, 2, 2, 2, 0, 1],
+    [1, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 1],
+    [1, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 1],
+    [1, 2, 0, 0, 0, 2, 2, 2, 0, 0, 0, 2, 1],
+    [1, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 1],
+    [1, 2, 2, 2, 0, 0, 0, 0, 0, 2, 2, 2, 1],
+    [1, 0, 0, 2, 2, 0, 0, 0, 2, 2, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+];
+
+
+function DibujarCero(ctx, x, y, x1, y1){
+    ctx.fillStyle = "brown";
+    ctx.fillRect(x, y, x1, y1);
+}
+
+function DibujarUno(ctx, x, y, x1, y1){
+    ctx.fillStyle = "black";
+    ctx.fillRect(x, y, x1, y1);
+}
+
+function DibujarDos(ctx, x, y, x1, y1){
+    ctx.fillStyle = "pink";
+    ctx.fillRect(x, y, x1, y1);
+}
+
+
+
+function DibujarMapa(ctx, mapa){
+    for(let row = 0; row < mapa.length; row++){
+        for(let col = 0; col < mapa[row].length; col++){
+            const cell = mapa[row][col];
+            const x = col * game.anchoCelda;
+            const y = row * game.altoCelda;
+            //console.log(x, y);
+            switch(cell){
+                case 0:
+                    DibujarCero(ctx,  x, y, game.anchoCelda, game.altoCelda);
+                    break;
+                case 1:
+                    DibujarUno(ctx, x, y, game.anchoCelda, game.altoCelda);
+                    break;
+                case 2:
+                    DibujarDos(ctx, x, y, game.anchoCelda, game.altoCelda);
+                    break;
+                default:
+                    break;
+                
+            }   
+
+        }
+    }
+}
 
 const cellSize = 50;
 
@@ -155,12 +241,14 @@ function updateGame() {
     // Limpiamos el canvas en cada frame
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    drawEscenario(ctx, escenario); //Dibujamos el escenario en el canvas.
-    playerTank.drawTank(ctx);
-    enemyTank1.drawEnemyTank(ctx); // Dibujamps el tanque enemigo
-    enemyTank2.drawEnemyTank(ctx);
-    enemyTank3.drawEnemyTank(ctx);
-    enemyTank4.drawEnemyTank(ctx);
+    DibujarMapa(ctx, mapa2);
+
+    //drawEscenario(ctx, escenario); //Dibujamos el escenario en el canvas.
+   // playerTank.drawTank(ctx);
+    //enemyTank1.drawEnemyTank(ctx); // Dibujamps el tanque enemigo
+    //enemyTank2.drawEnemyTank(ctx);
+    //enemyTank3.drawEnemyTank(ctx);
+    //enemyTank4.drawEnemyTank(ctx);
 
     //drawTank(playerTank); // Dibujamos el tanque del jugador
    // drawEnemyTank(enemyTank1); // Dibujamos el tanque enemigo 1 
