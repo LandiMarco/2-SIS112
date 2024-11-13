@@ -226,16 +226,371 @@ class Matriz {
         this.dibujarMatriz();
     }
 
-        //Primera secuencia
-        llenarmatrizSecuencia2(){
-            this.vaciarMatriz();
+    //Primera secuencia
+    llenarmatrizSecuencia2(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                this.matriz[i][j] = j % 3
+            }
+        }
+    this.dibujarMatriz();
+    }
+
+    llenarMatrizSecuencia_0_al_7(){
+        this.vaciarMatriz();
+        var puntero = 0;
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                this.matriz[i][j] = puntero;
+                if(puntero == 7){
+                    puntero = -1;
+                }
+                puntero = puntero + 1;
+            }
+            
+        }
+        this.dibujarMatriz();
+    }
+
+    llenarMatrizOtraSecuencia_0_al_7(){
+        this.vaciarMatriz();
+        var puntero = 0;
+        for (let j = 0; j < this.columnas; j++) {
             for (let i = 0; i < this.filas; i++) {
-                for (let j = 0; j < this.columnas; j++) {
-                    this.matriz[i][j] = j % 3
+                this.matriz[i][j] = puntero;
+                if(puntero == 7){
+                    puntero = -1;
+                }
+                puntero = puntero + 1;
+            }
+            
+        }
+        this.dibujarMatriz();
+    }
+
+    
+    llenarMatrizSecuenciaNro3__0_al_7(){
+        this.vaciarMatriz();
+        var puntero = 7;
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                this.matriz[i][j] = puntero;
+                if(puntero == 0){
+                    puntero = 8;
+                }
+                puntero = puntero - 1;
+            }
+            
+        }
+        this.dibujarMatriz();
+    }
+
+    llenarMatrizSecuenciaNro4__0_al_7(){
+        this.vaciarMatriz();
+        var intercambio = "disminuir";
+        var puntero = 7;
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                this.matriz[i][j] = puntero;
+
+                ///////////////////////// 7 al 0
+                if(intercambio == "disminuir"){
+                    if(puntero == 0){
+                       // puntero = 8;
+                        intercambio = "incrementar"
+                    }
+                    puntero = puntero - 1;
+                } 
+
+                //////////////////////// 0 al 7
+                if (intercambio == "incrementar"){
+                    if(puntero == 7){
+                       puntero = puntero -1;
+                        intercambio = "disminuir"
+                    }
+                    puntero = puntero + 1;
+                }
+
+            }
+            
+        }
+        this.dibujarMatriz();
+    }
+
+    //-------------------------------------------------------------------------------------------------
+    //EJERCICIOS PRACTICO MATRICES
+
+    // Ejercicio1:Cuadrado Relleno 
+    ejercicioUno(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                if (i == 0) {
+                    this.matriz[i][j] = 1;
+                }else{
+                    this.matriz[i][j] = 1;
                 }
             }
-            this.dibujarMatriz();
+            
         }
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio2: Marco Interno
+    ejercicioDos(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                if (i === 0 || i === this.filas - 1 || j === 0 || j === this.columnas - 1) {
+                    this.matriz[i][j] = 0;
+                } else {
+                    this.matriz[i][j] = 1;
+                }
+            }
+        }
+        // Después de llenar la matriz con el patrón de bordes, la dibujamos
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio3:Cruces
+    ejercicioTres(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                if (i === 4 || j === 4 ) {
+                    this.matriz[i][j] = 1;
+                } else {
+                    this.matriz[i][j] = 0;
+                }
+            }
+        }
+        // Después de llenar la matriz con el patrón de bordes, la dibujamos
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio4:Bordes y Diagonales
+    ejercicioCuatro(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                if (i === 0 || i === this.filas - 1 || j === 0 || j === this.columnas - 1) {
+                    this.matriz[i][j] = 1;
+                } else if (i === 1 || i === this.filas - 2 || j === 1 || j === this.columnas - 2) {
+                    this.matriz[i][j] = 0;
+                } else if (i === j || i + j === this.columnas - 1) {
+                    this.matriz[i][j] = 2;
+                }
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio5:Bandera
+    ejercicioCinco(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                if (i < this.filas/3) {
+                    this.matriz[i][j] = 0;
+                }else if (i < (2 * this.filas) / 3){
+                    this.matriz[i][j] = 1;
+                }else {
+                    this.matriz[i][j] = 2; 
+                }
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio6:Relleno Alterno
+    ejercicioSeis(){
+        this.vaciarMatriz();
+
+        let valor = 1; 
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                this.matriz[i][j] = valor // Empieza 
+            }
+            valor = 1 - valor;
+        }
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio7:Zig-Zag Horizontal
+    ejercicioSiete(){
+        this.vaciarMatriz();
+
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                // Si la posición de la fila (i) es igual a la posición de la columna (j),
+                if (i === j) {
+                    this.matriz[i][j] = 1; // estamos en la diagonal de la matriz. Asignamos 1 en esa posición.
+                } else {
+                    // Si no estamos en la diagonal, asignamos 0.
+                    this.matriz[i][j] = 0;
+                }
+            }
+        }
+        // Después de llenar la matriz con el patrón en diagonal, la dibujamos
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio8: Rellenoen Espiral
+    ejercicioOcho(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio9:Triángulo Superior Izquierdo
+    ejercicioNueve(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j <= i && j < this.columnas; j++) {
+                this.matriz[i][j] = 1;
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio10:Triángulo Inferior Derecho
+    ejercicioDiez(){
+        this.vaciarMatriz();
+        for (let j = 0; j < this.columnas; j++) {
+            for (let i = 0; i <= j && i < this.columnas; i++) {
+                this.matriz[i][j] = 1;
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio11: Cuadrícula
+    ejercicioOnce(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio12: Triángulo Central
+    ejercicioDoce(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio13:Rombos Concéntricos
+    ejercicioTrece(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio14:Cruces Concéntricas
+    ejercicioCatorce(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio15:Bandera Diagonal
+    ejercicioQuince(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio16:Cuadrado dentro de Cuadrado
+    ejercicioDieciSeis(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio17:Bordes y Centro
+    ejercicioDieciSiete(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio18: Líneas Paralelas
+    ejercicioDieciOcho(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio19:Marcas de Cruz
+    ejercicioDieciNueve(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    // Ejercicio20: Rombo de Esquinas
+    ejercicioVeinte(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio21: Relleno de Ajedrez
+    ejercicioVeintiUno(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+                // Alternar entre 1 y 0 dependiendo de la posición
+                this.matriz[i][j] = (i + j) % 2 === 0 ? 1 : 0;
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    //Ejercicio22: Reloj de Arena
+    ejercicioVeintiDos(){
+        this.vaciarMatriz();
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++) {
+            }
+        }
+        this.dibujarMatriz();
+    }
+
+    //------------------------------------------------------------------------------
 
     // Método para dibujar la matriz en el canvas
     dibujarMatriz() {
@@ -259,6 +614,21 @@ class Matriz {
                 break;
             case 2:
                 this.DibujarDos(x, y, this.anchoCelda, this.altoCelda);
+                break;
+            case 3:
+                this.DibujarTres(x, y, this.anchoCelda, this.altoCelda);
+                break;
+            case 4:
+                this.DibujarCuatro(x, y, this.anchoCelda, this.altoCelda);
+                break;
+            case 5:
+                this.DibujarCinco(x, y, this.anchoCelda, this.altoCelda);
+                break;
+            case 6:
+                this.DibujarSeis(x, y, this.anchoCelda, this.altoCelda);
+                break;
+            case 7:
+                this.DibujarSiete(x, y, this.anchoCelda, this.altoCelda);
                 break;
             default:
                 console.warn(`Valor desconocido en la matriz: ${valor}`);
@@ -285,7 +655,7 @@ class Matriz {
         this.ctx.fillRect(x, y, ancho, alto);
         this.ctx.strokeStyle = "#ecf0f1";
         this.ctx.strokeRect(x, y, ancho, alto);
-        // Agregar el texto "0" centrado en el rectángulo
+        // Agregar el texto "1" centrado en el rectángulo
         this.ctx.font = "bold 20px Arial"; // Ajustar la fuente y tamaño
         this.ctx.textAlign = "center";
         this.ctx.textBaseline = "middle";
@@ -298,11 +668,77 @@ class Matriz {
         this.ctx.fillRect(x, y, ancho, alto);
         this.ctx.strokeStyle = "#ecf0f1";
         this.ctx.strokeRect(x, y, ancho, alto);
-         // Agregar el texto "0" centrado en el rectángulo
+         // Agregar el texto "2" centrado en el rectángulo
         this.ctx.font = "bold 20px Arial"; // Ajustar la fuente y tamaño
         this.ctx.textAlign = "center";
         this.ctx.textBaseline = "middle";
         this.ctx.fillStyle = "#fff"; // Color del texto (blanco)
         this.ctx.fillText("2", x + ancho / 2, y + alto / 2);
+    }
+
+    DibujarTres(x, y, ancho, alto) {
+        this.ctx.fillStyle = "#50aa69"; // Color para valor 3
+        this.ctx.fillRect(x, y, ancho, alto);
+        this.ctx.strokeStyle = "#ecf0f1";
+        this.ctx.strokeRect(x, y, ancho, alto);
+         // Agregar el texto "3" centrado en el rectángulo
+        this.ctx.font = "bold 20px Arial"; // Ajustar la fuente y tamaño
+        this.ctx.textAlign = "center";
+        this.ctx.textBaseline = "middle";
+        this.ctx.fillStyle = "#fff"; // Color del texto (blanco)
+        this.ctx.fillText("3", x + ancho / 2, y + alto / 2);
+    }
+
+    DibujarCuatro(x, y, ancho, alto) {
+        this.ctx.fillStyle = "#6ca6b2"; // Color para valor 4
+        this.ctx.fillRect(x, y, ancho, alto);
+        this.ctx.strokeStyle = "#ecf0f1";
+        this.ctx.strokeRect(x, y, ancho, alto);
+         // Agregar el texto "4" centrado en el rectángulo
+        this.ctx.font = "bold 20px Arial"; // Ajustar la fuente y tamaño
+        this.ctx.textAlign = "center";
+        this.ctx.textBaseline = "middle";
+        this.ctx.fillStyle = "#fff"; // Color del texto (blanco)
+        this.ctx.fillText("4", x + ancho / 2, y + alto / 2);
+    }
+
+    DibujarCinco(x, y, ancho, alto) {
+        this.ctx.fillStyle = "#1d3235"; // Color para valor 5
+        this.ctx.fillRect(x, y, ancho, alto);
+        this.ctx.strokeStyle = "#ecf0f1";
+        this.ctx.strokeRect(x, y, ancho, alto);
+         // Agregar el texto "5" centrado en el rectángulo
+        this.ctx.font = "bold 20px Arial"; // Ajustar la fuente y tamaño
+        this.ctx.textAlign = "center";
+        this.ctx.textBaseline = "middle";
+        this.ctx.fillStyle = "#fff"; // Color del texto (blanco)
+        this.ctx.fillText("5", x + ancho / 2, y + alto / 2);
+    }
+
+    DibujarSeis(x, y, ancho, alto) {
+        this.ctx.fillStyle = "#5c9da6"; // Color para valor 6
+        this.ctx.fillRect(x, y, ancho, alto);
+        this.ctx.strokeStyle = "#ecf0f1";
+        this.ctx.strokeRect(x, y, ancho, alto);
+         // Agregar el texto "6" centrado en el rectángulo
+        this.ctx.font = "bold 20px Arial"; // Ajustar la fuente y tamaño
+        this.ctx.textAlign = "center";
+        this.ctx.textBaseline = "middle";
+        this.ctx.fillStyle = "#fff"; // Color del texto (blanco)
+        this.ctx.fillText("6", x + ancho / 2, y + alto / 2);
+    }
+
+    
+    DibujarSiete(x, y, ancho, alto) {
+        this.ctx.fillStyle = "#a65c78"; // Color para valor 7
+        this.ctx.fillRect(x, y, ancho, alto);
+        this.ctx.strokeStyle = "#ecf0f1";
+        this.ctx.strokeRect(x, y, ancho, alto);
+         // Agregar el texto "7" centrado en el rectángulo
+        this.ctx.font = "bold 20px Arial"; // Ajustar la fuente y tamaño
+        this.ctx.textAlign = "center";
+        this.ctx.textBaseline = "middle";
+        this.ctx.fillStyle = "#fff"; // Color del texto (blanco)
+        this.ctx.fillText("7", x + ancho / 2, y + alto / 2);
     }
 }

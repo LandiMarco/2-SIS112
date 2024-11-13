@@ -61,3 +61,7 @@ canvas {
     max-width: 90vw;
     max-height: 90vh;
 }
+
+.button-container.last {
+    background-color: green;
+}
