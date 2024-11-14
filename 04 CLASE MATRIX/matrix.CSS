@@ -5,12 +5,16 @@ html, body {
     padding: 0;
     font-family: Arial, sans-serif;
     overflow: hidden;
+    height: 100%;
 }
 
 /* Estilo del cuerpo y fondo */
 body {
-    background-color: #20232a;
-    color: white;
+    background-image: url('playa.png'); /* Ruta de la imagen de fondo */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #4A4A4A; /* Texto en gris oscuro */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,6 +26,9 @@ body {
     display: flex;
     align-items: center;
     gap: 20px; /* Espacio entre el canvas y los botones */
+    background-color: rgba(255, 245, 225, 0.8); /* Fondo semitransparente para contraste */
+    padding: 20px;
+    border-radius: 10px;
 }
 
 /* Estilos para el contenedor de botones */
@@ -36,32 +43,30 @@ button {
     padding: 12px 24px;
     font-size: 16px;
     font-weight: bold;
-    color: #20232a;
-    background-color: #61dafb;
+    color: #FFF5E1; /* Texto en color crema */
+    background-color: #FFA726; /* Naranja cálido */
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
-    background-color: #21a1f1;
+    background-color: #FFB300; /* Cambia a amarillo mostaza en hover */
     transform: scale(1.05);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button:active {
-    background-color: #1a85c2;
+    background-color: #D84315; /* Rojo terracota en active */
 }
 
 /* Estilo del canvas */
 canvas {
-    border: 3px solid #61dafb;
+    border: 3px solid #D84315; /* Borde en rojo terracota */
     border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
     max-width: 90vw;
     max-height: 90vh;
-}
-
-.button-container.last {
-    background-color: green;
+    background-color: #FFF5E1; /* Fondo del canvas en crema */
 }
