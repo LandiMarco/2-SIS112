@@ -435,7 +435,7 @@ class Matriz {
         this.dibujarMatriz();
     }
 
-    // Ejercicio8: Rellenoen Espiral
+    // Ejercicio8: Relleno en Espiral
     ejercicioOcho(){
         this.vaciarMatriz();
         let valor = 1; // Inicializa con 1
@@ -481,11 +481,13 @@ class Matriz {
     ejercicioNueve(){
         this.vaciarMatriz();
         for (let i = 0; i < this.filas; i++) {
-            for (let j = 0; j <= i && j < this.columnas; j++) {
-                this.matriz[i][j] = 1; // Llena celdas hasta la posición i en cada fila
+            for (let j = 0; j < this.columnas - i; j++) {
+                
+                this.matriz[i][j] = 1;
             }
         }
-        this.dibujarMatriz();
+        this.dibujarMatriz(); 
+
     }
 
     // Ejercicio10:Triángulo Inferior Derecho
