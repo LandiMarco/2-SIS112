@@ -8,17 +8,38 @@ html, body {
     height: 100%;
 }
 
+/* Efecto de glitch en el fondo */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('glitch.png') center center / cover no-repeat;
+    opacity: 0.05; /* Menor opacidad para más transparencia */
+    z-index: 1;
+    pointer-events: none;
+    animation: glitchFlash 1.5s infinite alternate; /* Efecto de parpadeo */
+}
+
+/* Animación de iluminación intermitente */
+@keyframes glitchFlash {
+    0% { opacity: 0.05; }
+    50% { opacity: 0.1; }
+    100% { opacity: 0.15; }
+}
+
 /* Estilo del cuerpo y fondo */
 body {
-    background-image: url('playa.png'); /* Ruta de la imagen de fondo */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #4A4A4A; /* Texto en gris oscuro */
+    background: url('fnaf-into-the-pit.gif') -15% center / contain no-repeat fixed, #1C1C1C;
+    color: #E0E0E0; /* Texto claro */
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    position: relative;
+    z-index: 0;
 }
 
 /* Contenedor principal */
@@ -26,9 +47,12 @@ body {
     display: flex;
     align-items: center;
     gap: 20px; /* Espacio entre el canvas y los botones */
-    background-color: rgba(255, 245, 225, 0.8); /* Fondo semitransparente para contraste */
+    background-color: rgba(34, 34, 34, 0.9); /* Fondo semitransparente para contraste */
     padding: 20px;
     border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2; /* Para que el efecto glitch esté detrás del contenido */
 }
 
 /* Estilos para el contenedor de botones */
@@ -43,8 +67,8 @@ button {
     padding: 12px 24px;
     font-size: 16px;
     font-weight: bold;
-    color: #FFF5E1; /* Texto en color crema */
-    background-color: #FFA726; /* Naranja cálido */
+    color: #1C1C1C; /* Texto oscuro */
+    background-color: #4CAF50; /* Verde oscuro para los botones */
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -52,21 +76,21 @@ button {
 }
 
 button:hover {
-    background-color: #FFB300; /* Cambia a amarillo mostaza en hover */
+    background-color: #66BB6A; /* Verde claro en hover */
     transform: scale(1.05);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button:active {
-    background-color: #D84315; /* Rojo terracota en active */
+    background-color: #388E3C; /* Verde aún más oscuro en active */
 }
 
 /* Estilo del canvas */
 canvas {
-    border: 3px solid #D84315; /* Borde en rojo terracota */
+    border: 3px solid #4CAF50; /* Borde verde oscuro */
     border-radius: 10px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
     max-width: 90vw;
     max-height: 90vh;
-    background-color: #FFF5E1; /* Fondo del canvas en crema */
+    background-color: #2E2E2E; /* Fondo gris oscuro para el canvas */
 }

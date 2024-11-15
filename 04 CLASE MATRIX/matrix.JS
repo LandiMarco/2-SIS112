@@ -326,15 +326,10 @@ class Matriz {
         this.vaciarMatriz();
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
-                if (i == 0) {
-                    this.matriz[i][j] = 1;
-                }else{
-                    this.matriz[i][j] = 1;
-                }
+                this.matriz[i][j] = 1; // Llena toda la matriz con 1s
             }
-            
         }
-        this.dibujarMatriz();
+        this.dibujarMatriz(); // Dibuja la matriz en el canvas
     }
 
     // Ejercicio2: Marco Interno
@@ -343,13 +338,13 @@ class Matriz {
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
                 if (i === 0 || i === this.filas - 1 || j === 0 || j === this.columnas - 1) {
-                    this.matriz[i][j] = 0;
+                    this.matriz[i][j] = 0; // Borde externo con 0s
                 } else {
-                    this.matriz[i][j] = 1;
+                    this.matriz[i][j] = 1;  // Interior con 1s
                 }
             }
         }
-        // Después de llenar la matriz con el patrón de bordes, la dibujamos
+        
         this.dibujarMatriz();
     }
 
@@ -359,13 +354,13 @@ class Matriz {
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
                 if (i === 4 || j === 4 ) {
-                    this.matriz[i][j] = 1;
+                    this.matriz[i][j] = 1; // Rellena la fila 4 y la columna 4
                 } else {
                     this.matriz[i][j] = 0;
                 }
             }
         }
-        // Después de llenar la matriz con el patrón de bordes, la dibujamos
+        
         this.dibujarMatriz();
     }
 
@@ -375,11 +370,11 @@ class Matriz {
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
                 if (i === 0 || i === this.filas - 1 || j === 0 || j === this.columnas - 1) {
-                    this.matriz[i][j] = 1;
+                    this.matriz[i][j] = 1; // Bordes exteriores
                 } else if (i === 1 || i === this.filas - 2 || j === 1 || j === this.columnas - 2) {
-                    this.matriz[i][j] = 0;
+                    this.matriz[i][j] = 0; //Interior vacío
                 } else if (i === j || i + j === this.columnas - 1) {
-                    this.matriz[i][j] = 2;
+                    this.matriz[i][j] = 2; // Diagonales
                 }
             }
         }
@@ -388,15 +383,17 @@ class Matriz {
 
     //Ejercicio5:Bandera
     ejercicioCinco(){
+
         this.vaciarMatriz();
+
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
                 if (i < this.filas/3) {
-                    this.matriz[i][j] = 1;
+                    this.matriz[i][j] = 1;  // Primera franja con 1
                 }else if (i < (2 * this.filas) / 3){
-                    this.matriz[i][j] = 2;
+                    this.matriz[i][j] = 2; // Segunda franja con 2
                 }else {
-                    this.matriz[i][j] = 0; 
+                    this.matriz[i][j] = 0; // Tercera franja con 0
                 }
             }
         }
@@ -405,20 +402,22 @@ class Matriz {
 
     // Ejercicio6:Relleno Alterno
     ejercicioSeis(){
+
         this.vaciarMatriz();
 
-        let valor = 1; 
+        let valor = 1; // Comienza con 1
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
-                this.matriz[i][j] = valor // Empieza 
+                this.matriz[i][j] = valor // Asigna el valor actual
             }
-            valor = 1 - valor;
+            valor = 1 - valor; // Alterna entre 1 y 0
         }
         this.dibujarMatriz();
     }
 
     //Ejercicio7:Zig-Zag Horizontal
     ejercicioSiete(){
+
         this.vaciarMatriz();
 
         for (let i = 0; i < this.filas; i++) {
@@ -439,9 +438,41 @@ class Matriz {
     // Ejercicio8: Rellenoen Espiral
     ejercicioOcho(){
         this.vaciarMatriz();
-        for (let i = 0; i < this.filas; i++) {
-            for (let j = 0; j < this.columnas; j++) {
+        let valor = 1; // Inicializa con 1
+        let inicioFila = 0, finFila = this.filas - 1;
+        let inicioCol = 0, finCol = this.columnas - 1;
+    
+        while (inicioFila <= finFila && inicioCol <= finCol) {
+            
+            for (let j = inicioCol; j <= finCol; j++) {
+                this.matriz[inicioFila][j] = valor; // Rellena fila superior
             }
+            inicioFila++;
+    
+            
+            for (let i = inicioFila; i <= finFila; i++) {
+                this.matriz[i][finCol] = valor; // Rellena columna derecha
+            }
+            finCol--;
+    
+            
+            if (inicioFila <= finFila) {
+                for (let j = finCol; j >= inicioCol; j--) {
+                    this.matriz[finFila][j] = valor; // Rellena fila inferior
+                }
+                finFila--;
+            }
+    
+            
+            if (inicioCol <= finCol) {
+                for (let i = finFila; i >= inicioFila; i--) {
+                    this.matriz[i][inicioCol] = valor;  // Rellena columna izquierda
+                }
+                inicioCol++;
+            }
+    
+            
+            valor = (valor === 1) ? 0 : 1;  // Alterna entre 1 y 0
         }
         this.dibujarMatriz();
     }
@@ -451,7 +482,7 @@ class Matriz {
         this.vaciarMatriz();
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j <= i && j < this.columnas; j++) {
-                this.matriz[i][j] = 1;
+                this.matriz[i][j] = 1; // Llena celdas hasta la posición i en cada fila
             }
         }
         this.dibujarMatriz();
@@ -459,13 +490,15 @@ class Matriz {
 
     // Ejercicio10:Triángulo Inferior Derecho
     ejercicioDiez(){
-        this.vaciarMatriz();
-        for (let j = 0; j < this.columnas; j++) {
-            for (let i = 0; i <= j && i < this.columnas; i++) {
-                this.matriz[i][j] = 1;
-            }
+    // Rellenar la mitad inferior derecha con un triángulo de 1s
+    this.vaciarMatriz(); 
+    for (let i = 0; i < this.filas; i++) {
+        for (let j = this.columnas - i - 1; j < this.columnas; j++) {
+            
+            this.matriz[i][j] = 1;
         }
-        this.dibujarMatriz();
+    }
+    this.dibujarMatriz();
     }
 
     // Ejercicio11: Cuadrícula
@@ -499,7 +532,7 @@ class Matriz {
             const fin = centro + i;
             for (let j = 0; j < this.columnas; j++) {
                 if (j >= inicio && j <= fin) {
-                this.matriz[i][j] = 1; // Dibujar la pirámide en la parte superior
+                this.matriz[1 + i][j] = 1; // Dibujar la pirámide en la parte superior
                 } else {
                 this.matriz[i][j] = 0; // Resto en 0
                 }
@@ -542,11 +575,29 @@ class Matriz {
 
     // Ejercicio14:Cruces Concéntricas
     ejercicioCatorce(){
+        
         this.vaciarMatriz();
-        for (let i = 0; i < this.filas; i++) {
-            for (let j = 0; j < this.columnas; j++) {
-            }
+
+     for (let j = 2; j < this.columnas - 2; j++) {
+            this.matriz[1][j] = 1;
+            this.matriz[this.filas - 2][j] = 1;
         }
+        for (let i = 2; i < this.filas - 2; i++) {
+            this.matriz[i][1] = 1;
+            this.matriz[i][this.columnas - 2] = 1;
+        }
+
+        // Segunda capa de la cruz (siguiente capa interior)
+        for (let j = 2; j < this.columnas - 2; j++) {
+            this.matriz[4][j] = 1;
+            this.matriz[5][j] = 1;
+        }
+        for (let i = 2; i < this.filas - 2; i++) {
+            this.matriz[i][4] = 1;
+            this.matriz[i][5] = 1;
+        }
+
+        // Dibujar la matriz
         this.dibujarMatriz();
     }
 
@@ -555,32 +606,38 @@ class Matriz {
         this.vaciarMatriz();
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j <= i && j < this.columnas; j++) {
-                this.matriz[i][j] = 1;
+                this.matriz[i][j] = 1; // Rellena la diagonal principal con un patrón triangular
             }
         }
         this.dibujarMatriz();
     }
 
     //Ejercicio16:Cuadrado dentro de Cuadrado
-    ejercicioDieciSeis(){
+    ejercicioDieciSeis() {
+        this.vaciarMatriz();
+    
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++) {
                 // Borde exterior (1 en la primera y última fila o columna)
                 if (i === 0 || i === this.filas - 1 || j === 0 || j === this.columnas - 1) {
                     this.matriz[i][j] = 1;
                 }
-                // Borde interior (2 en la segunda y penúltima fila o columna)
+                // Segundo borde (0 en la segunda y penúltima fila o columna, pintado de morado)
                 else if (i === 1 || i === this.filas - 2 || j === 1 || j === this.columnas - 2) {
+                    this.matriz[i][j] = 0;
+                }
+                // Tercer borde (2 en la tercera y antepenúltima fila o columna, subrayado en amarillo)
+                else if (i === 2 || i === this.filas - 3 || j === 2 || j === this.columnas - 3) {
                     this.matriz[i][j] = 2;
                 }
-                // Interior vacío
+                // Interior vacío (0 en el área central)
                 else {
                     this.matriz[i][j] = 0;
                 }
             }
         }
     
-        // Después de llenar la matriz con el patrón de cuadrado dentro de cuadrado, la dibujamos
+        // Dibujar la matriz
         this.dibujarMatriz();
     }
 
@@ -629,8 +686,22 @@ class Matriz {
     //Ejercicio19:Marcas de Cruz
     ejercicioDieciNueve(){
         this.vaciarMatriz();
-        for (let i = 0; i < this.filas; i++) {
-            for (let j = 0; j < this.columnas; j++) {
+        const intervalo = 4; // Ajusta este valor para cambiar la separación entre las marcas de X
+        for (let i = 0; i < this.filas; i += intervalo) {
+            for (let j = 0; j < this.columnas; j += intervalo) {
+                // Dibuja la cruz "X" en cada intervalo
+                if (i < this.filas && j < this.columnas) {
+                    this.matriz[i][j] = 1; // Esquina superior izquierda
+                }
+                if (i + 1 < this.filas && j + 1 < this.columnas) {
+                    this.matriz[i + 1][j + 1] = 1; // Diagonal hacia abajo
+                }
+                if (i + 2 < this.filas && j + 2 < this.columnas) {
+                    this.matriz[i + 2][j + 2] = 1; // Diagonal hacia abajo
+                }
+                if (i + 3 < this.filas && j + 3 < this.columnas) {
+                    this.matriz[i + 3][j + 3] = 1; // Diagonal hacia abajo
+                }
             }
         }
         this.dibujarMatriz();
@@ -770,7 +841,7 @@ class Matriz {
 
     // Métodos para dibujar cada tipo de celda con un color específico
     DibujarCero(x, y, ancho, alto) {
-        this.ctx.fillStyle = "#FFF5E1"; // Color para valor 0
+        this.ctx.fillStyle = "#2E2E2E"; // Color para valor 0
         this.ctx.fillRect(x, y, ancho, alto);
         this.ctx.strokeStyle = "#ecf0f1";
         this.ctx.strokeRect(x, y, ancho, alto);
@@ -783,7 +854,7 @@ class Matriz {
     }
 
     DibujarUno(x, y, ancho, alto) {
-        this.ctx.fillStyle = "#FFA726"; // Color para valor 1
+        this.ctx.fillStyle = "#1565C0"; // Color para valor 1
         this.ctx.fillRect(x, y, ancho, alto);
         this.ctx.strokeStyle = "#ecf0f1";
         this.ctx.strokeRect(x, y, ancho, alto);
@@ -796,7 +867,7 @@ class Matriz {
     }
 
     DibujarDos(x, y, ancho, alto) {
-        this.ctx.fillStyle = "#D84315"; // Color para valor 2
+        this.ctx.fillStyle = "#2E7D32"; // Color para valor 2
         this.ctx.fillRect(x, y, ancho, alto);
         this.ctx.strokeStyle = "#ecf0f1";
         this.ctx.strokeRect(x, y, ancho, alto);
