@@ -486,7 +486,7 @@ class Matriz {
                 this.matriz[i][j] = 1;
             }
         }
-        this.dibujarMatriz(); 
+        this.dibujarMatriz();
 
     }
 

@@ -3,13 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </title>Imposible Game</title>
-    <link rel="stylesheet" href="CSS/estilos.css">
+    <title>The World's Hardest Game</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #add8e6;
+            height: 100vh;
+        }
+
+        .buttons {
+            margin-bottom: 20px;
+        }
+
+        .buttons button {
+            background-color: #ff4500;
+            border: 2px solid #000;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .buttons button:hover {
+            background-color: #ff6347;
+        }
+
+        canvas {
+            border: 3px solid #000;
+            background-color: #fff;
+        }
+
+        .counter {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <canvas id="gameCanvas"></canvas>
-    <script src="UTILS/constantes.js"></script>
-    <script src="JS/GameIG.js"></script>
-    <script src="JS/mainIG.js"></script>
+    <div class="buttons">
+        <button onclick="loadLevel(1)">Nivel 1</button>
+        <button onclick="loadLevel(2)">Nivel 2</button>
+        <button onclick="loadLevel(3)">Nivel 3</button>
+    </div>
+    <canvas id="gameCanvas" width="1000" height="400"></canvas>
+    <div class="counter">
+        Muertes: <span id="deathCounter">0</span>
+    </div>
+
+    <script src="GameIG.js"></script>
+    <script src="JugadorIG.js"></script>
+    <script src="monedasIG.js"></script>
+    <script src="enemigoIG.js"></script>
+    <script src="mainIG.js"></script>
+    <script>
+        let deathCount = 0;
+
+        // Actualizar contador de muertes
+        function updateDeathCounter() {
+            deathCount++;
+            document.getElementById('deathCounter').textContent = deathCount;
+        }
+
+        // Cargar diferentes niveles
+        function loadLevel(level) {
+            console.log(`Intentando cargar el nivel ${level}`);
+            if (level === 1) {
+                try {
+                    loadLevel1(); // Llama a la función para cargar el nivel 1
+                } catch (error) {
+                    console.error("Error cargando el nivel 1:", error);
+                    alert("Hubo un problema al cargar el nivel 1. Revisa la consola para más detalles.");
+                }
+            } else {
+                alert(`Nivel ${level} no configurado aún.`);
+            }
+        }
+
+        // Llama a esta función cada vez que el jugador muera
+        function playerDied() {
+            updateDeathCounter();
+            console.log("El jugador ha muerto. Contador de muertes actualizado.");
+        }
+
+        // Agregar un listener para verificar si el canvas carga correctamente
+        window.onload = () => {
+            const canvas = document.getElementById('gameCanvas');
+            if (canvas && canvas.getContext) {
+                console.log("Canvas cargado correctamente.");
+            } else {
+                console.error("El canvas no pudo cargarse. Verifica el ID o la inicialización.");
+            }
+        };
+    </script>
 </body>
 </html>
