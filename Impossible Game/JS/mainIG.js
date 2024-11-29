@@ -7,12 +7,27 @@ let enemies; // Array de enemigos
 
 // Mapa del nivel 1
 const level1Map = [
-    [1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 2, 2, 2, 0, 1],
-    [3, 0, 0, 0, 0, 0, 4],
-    [1, 0, 2, 2, 2, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1]
+    [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 , 4 , 4],
+    [4, 4, 4, 4, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 4 , 4 , 4],
+    [4, 4, 4, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 4, 4 , 4 , 4],
+    [3, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 , 3 , 3],
+    [3, 3, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 , 3 , 3],
+    [4, 4, 4, 4, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 4 , 4 , 4],
+    [4, 4, 4, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 4, 4 , 4 , 4],
+    [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 , 4 , 4],
 ];
+
+const level2Map = [
+    [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 , 4 , 4],
+    [4, 4, 4, 4, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 4 , 4 , 4],
+    [4, 4, 4, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 4, 4 , 4 , 4],
+    [3, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 , 3 , 3],
+    [3, 3, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0 , 3 , 3],
+    [4, 4, 4, 4, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 4 , 4 , 4],
+    [4, 4, 4, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 4, 4 , 4 , 4],
+    [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4 , 4 , 4],
+];
+
 
 // Ajustar el tamaño del canvas
 function resizeCanvas() {
@@ -25,25 +40,25 @@ function drawMap(ctx, mapa) {
     for (let row = 0; row < mapa.length; row++) {
         for (let col = 0; col < mapa[row].length; col++) {
             const cell = mapa[row][col];
-            const x = col * 100;
-            const y = row * 100;
+            const x = col * 50;
+            const y = row * 50;
 
             switch (cell) {
                 case 0: // Espacio vacío
                     ctx.fillStyle = "#fff";
-                    ctx.fillRect(x, y, 100, 100);
+                    ctx.fillRect(x, y, 50, 50);
                     break;
                 case 1: // Bordes
-                    ctx.fillStyle = "#0000ff";
-                    ctx.fillRect(x, y, 100, 100);
+                    ctx.fillStyle = "#e0dcfc";
+                    ctx.fillRect(x, y,  50, 50);
                     break;
                 case 3: // Entrada
                     ctx.fillStyle = "#00ff00";
-                    ctx.fillRect(x, y, 100, 100);
+                    ctx.fillRect(x, y,  50, 50);
                     break;
                 case 4: // Salida
-                    ctx.fillStyle = "#00ff00";
-                    ctx.fillRect(x, y, 100, 100);
+                    ctx.fillStyle = "#CCCCFF";
+                    ctx.fillRect(x, y,  50, 50);
                     break;
             }
         }

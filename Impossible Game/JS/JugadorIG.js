@@ -4,7 +4,7 @@ class Rojo {
         this.posY = _posY;
         this.direccionDisparo = _direccionDisparo;
         this.vidas = _vidas;
-        this.velocidad = 50;
+        this.velocidad = 25;
         this.anchoMapa = _anchoMapa;
         this.altoMapa = _altoMapa;
     }
@@ -16,7 +16,7 @@ class Rojo {
     }
 
     moveRight() {
-        if (this.posX + this.velocidad <= this.anchoMapa - 50) {
+        if (this.posX + this.velocidad <= this.anchoMapa - 25) {
             this.posX += this.velocidad;
         }
     }
@@ -28,13 +28,13 @@ class Rojo {
     }
 
     moveDown() {
-        if (this.posY + this.velocidad <= this.altoMapa - 50) {
+        if (this.posY + this.velocidad <= this.altoMapa - 25) {
             this.posY += this.velocidad;
         }
     }
 
     draw(ctx) {
         ctx.fillStyle = "#ff0000";
-        ctx.fillRect(this.posX, this.posY, 50, 50);
+        ctx.fillRect(this.posX, this.posY, 25, 25);
     }
 }
