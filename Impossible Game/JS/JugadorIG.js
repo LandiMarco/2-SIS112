@@ -9,29 +9,41 @@ class Rojo {
         this.altoMapa = _altoMapa;
     }
 
-    moveLeft() {
-        if (this.posX - this.velocidad >= 0) {
-            this.posX -= this.velocidad;
-        }
+moveLeft() {
+    const nextX = this.posX - this.velocidad;
+    const col = Math.floor((nextX) / 50); // Verifica la columna al borde izquierdo
+    const row = Math.floor((this.posY + 12) / 50); // Usa el centro del jugador para mayor precisión
+    if (nextX >= 0 && level1Map[row][col] !== 4) {
+        this.posX = nextX;
     }
+}
 
-    moveRight() {
-        if (this.posX + this.velocidad <= this.anchoMapa - 25) {
-            this.posX += this.velocidad;
-        }
+moveRight() {
+    const nextX = this.posX + this.velocidad;
+    const col = Math.floor((nextX + 24) / 50); // Verifica la columna al borde derecho
+    const row = Math.floor((this.posY + 12) / 50); // Usa el centro del jugador para mayor precisión
+    if (nextX + 25 <= this.anchoMapa && level1Map[row][col] !== 4) {
+        this.posX = nextX;
     }
+}
 
-    moveUp() {
-        if (this.posY - this.velocidad >= 0) {
-            this.posY -= this.velocidad;
-        }
+moveUp() {
+    const nextY = this.posY - this.velocidad;
+    const col = Math.floor((this.posX + 12) / 50); // Usa el centro del jugador para mayor precisión
+    const row = Math.floor(nextY / 50); // Verifica la fila al borde superior
+    if (nextY >= 0 && level1Map[row][col] !== 4) {
+        this.posY = nextY;
     }
+}
 
-    moveDown() {
-        if (this.posY + this.velocidad <= this.altoMapa - 25) {
-            this.posY += this.velocidad;
-        }
+moveDown() {
+    const nextY = this.posY + this.velocidad;
+    const col = Math.floor((this.posX + 12) / 50); // Usa el centro del jugador para mayor precisión
+    const row = Math.floor((nextY + 24) / 50); // Verifica la fila al borde inferior
+    if (nextY + 25 <= this.altoMapa && level1Map[row][col] !== 4) {
+        this.posY = nextY;
     }
+}
 
     draw(ctx) {
         ctx.fillStyle = "#ff0000";

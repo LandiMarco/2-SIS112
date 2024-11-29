@@ -2,7 +2,7 @@ class Enemigo {
     constructor(_x, _y, _radius, _speed, _direction, _canvasHeight) {
         this.x = _x;
         this.y = _y;
-        this.radius = _radius;
+        this.radius = _radius * 0.5;
         this.speed = _speed;
         this.direction = _direction;
         this.canvasHeight = _canvasHeight;
@@ -14,13 +14,18 @@ class Enemigo {
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fill();
     }
-
     move() {
-        this.y += this.speed * this.direction;
-        if (this.y + this.radius > this.canvasHeight || this.y - this.radius < 0) {
-            this.direction *= -1;
+        const nextY = this.y + this.speed * this.direction;
+        const col = Math.floor(this.x / 50); // Columna actual
+        const row = Math.floor(nextY / 50); // Conversión a fila en el mapa
+    
+        if (nextY + this.radius <= this.canvasHeight && nextY - this.radius >= 0 && level1Map[row][col] !== 4) {
+            this.y = nextY;
+        } else {
+            this.direction *= -1; // Cambia de dirección si encuentra un 4 o un límite
         }
     }
+    
 }
 
 
