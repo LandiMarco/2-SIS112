@@ -4,49 +4,36 @@ class Rojo {
         this.posY = _posY;
         this.direccionDisparo = _direccionDisparo;
         this.vidas = _vidas;
-        this.velocidad = 25;
+        this.velocidad = 2; // Velocidad del jugador
+        this.dx = 0; // Movimiento en eje X
+        this.dy = 0; // Movimiento en eje Y
         this.anchoMapa = _anchoMapa;
         this.altoMapa = _altoMapa;
     }
 
-moveLeft() {
-    const nextX = this.posX - this.velocidad;
-    const col = Math.floor((nextX) / 50); // Verifica la columna al borde izquierdo
-    const row = Math.floor((this.posY + 12) / 50); // Usa el centro del jugador para mayor precisión
-    if (nextX >= 0 && level1Map[row][col] !== 4) {
-        this.posX = nextX;
-    }
-}
-
-moveRight() {
-    const nextX = this.posX + this.velocidad;
-    const col = Math.floor((nextX + 24) / 50); // Verifica la columna al borde derecho
-    const row = Math.floor((this.posY + 12) / 50); // Usa el centro del jugador para mayor precisión
-    if (nextX + 25 <= this.anchoMapa && level1Map[row][col] !== 4) {
-        this.posX = nextX;
-    }
-}
-
-moveUp() {
-    const nextY = this.posY - this.velocidad;
-    const col = Math.floor((this.posX + 12) / 50); // Usa el centro del jugador para mayor precisión
-    const row = Math.floor(nextY / 50); // Verifica la fila al borde superior
-    if (nextY >= 0 && level1Map[row][col] !== 4) {
-        this.posY = nextY;
-    }
-}
-
-moveDown() {
-    const nextY = this.posY + this.velocidad;
-    const col = Math.floor((this.posX + 12) / 50); // Usa el centro del jugador para mayor precisión
-    const row = Math.floor((nextY + 24) / 50); // Verifica la fila al borde inferior
-    if (nextY + 25 <= this.altoMapa && level1Map[row][col] !== 4) {
-        this.posY = nextY;
-    }
-}
-
     draw(ctx) {
-        ctx.fillStyle = "#ff0000";
-        ctx.fillRect(this.posX, this.posY, 25, 25);
+        ctx.fillStyle = "#ff0000"; // Color del jugador
+        ctx.fillRect(this.posX, this.posY, 25, 25); // Dibuja el rectángulo del jugador
+    }
+
+    move() {
+        this.posX += this.dx; // Actualiza posición X
+        this.posY += this.dy; // Actualiza posición Y
+
+        // Limitar el movimiento dentro de los bordes del mapa
+        if (this.posX < 0) this.posX = 0;
+        if (this.posX + 25 > this.anchoMapa) this.posX = this.anchoMapa - 25;
+        if (this.posY < 0) this.posY = 0;
+        if (this.posY + 25 > this.altoMapa) this.posY = this.altoMapa - 25;
+    }
+
+    setDirection(dx, dy) {
+        this.dx = dx;
+        this.dy = dy;
+    }
+
+    stop() {
+        this.dx = 0;
+        this.dy = 0;
     }
 }
