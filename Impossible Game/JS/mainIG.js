@@ -2,20 +2,24 @@
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 
+
+///////////////////// CONSTANTES
 let player; // Variable para el jugador
 let enemies; // Array de enemigos
 let initialPlayerPosition = { x: 50, y: 150 }; 
+let deathCount = 0; // Variable global para almacenar el número de muertes
 
 
 
+////////////////////////////MAPAS
 
 // Mapa del nivel 1
 const level1Map = [
     [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
     [4, 4, 4, 4, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 4, 4, 4],
     [4, 4, 4, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 4, 4, 4, 4],
-    [3, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 3, 3],
-    [3, 3, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 3],
+    [5, 5, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 3, 3],
+    [5, 5, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 3],
     [4, 4, 4, 4, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 4, 4, 4],
     [4, 4, 4, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 4, 4, 4, 4],
     [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
@@ -26,14 +30,17 @@ const level2Map = [
     [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
     [4, 4, 4, 4, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 4, 4, 4],
     [4, 4, 4, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 4, 4, 4, 4],
-    [3, 3, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 3, 3],
-    [3, 3, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 3],
+    [5, 5, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 3, 3],
+    [5, 5, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 3],
     [4, 4, 4, 4, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 4, 4, 4, 4],
     [4, 4, 4, 4, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 4, 4, 4, 4],
     [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
 ];
 
 
+
+
+///////////////////////////////CARGAR NIVELES
 
 // Cargar nivel 1
 function loadLevel1() {
@@ -63,14 +70,14 @@ function loadLevel1() {
         new Enemigo(275, 50, 20, 2, 1, canvas.height),
         new Enemigo(475, 50, 20, 2, 1, canvas.height),
         new Enemigo(425, 50, 20, 2, 1, canvas.height),
-        new Enemigo(675, 50, 20, 2, -1, canvas.height),
+        new Enemigo(675, 50, 20, 2, 1, canvas.height),
         new Enemigo(625, 50, 20, 2, 1, canvas.height),
         //Abajo
         new Enemigo(375, 350, 20, 2, 1, canvas.height),
         new Enemigo(325, 350, 20, 2, 1, canvas.height),
         new Enemigo(575, 350, 20, 2, 1, canvas.height),
         new Enemigo(525, 350, 20, 2, 1, canvas.height),
-        new Enemigo(775, 350, 20, 2, -1, canvas.height),
+        new Enemigo(775, 350, 20, 2, 1, canvas.height),
         new Enemigo(725, 350, 20, 2, 1, canvas.height),
     ];
 
@@ -92,7 +99,7 @@ function loadLevel2() {
 
     
 
-    // Inicialización del jugador
+    // Inicializacion del jugador
     player = new Rojo(50, 150, "right", 3, canvas.width, canvas.height);
     console.log("Jugador inicializado:", player);
 
@@ -151,6 +158,9 @@ function drawMap(ctx, mapa) {
                 case 4:
                     ctx.fillStyle = "#CCCCFF"; // Bordes
                     break;
+                case 5:
+                    ctx.fillStyle = "#ed8311"; // Bordes
+                    break;
             }
             ctx.fillRect(x, y, 50, 50);
         }
@@ -158,8 +168,10 @@ function drawMap(ctx, mapa) {
 }
 
 
-// Restricción basada en el mapa
-// Restricción basada en el mapa
+
+/////////////////////////////////FUNCIONES
+
+
 // Restricción basada en el mapa
 function canMoveTo(newX, newY) {
     // Dimensiones del jugador
@@ -202,24 +214,6 @@ function movePlayer() {
 }
 
 
-// Actualizar el juego
-function updateGame() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    drawMap(ctx, level1Map);
-    movePlayer(); // Aplica movimiento con restricciones
-    player.draw(ctx);
-
-    coins.forEach((coin) => coin.draw(ctx));
-    enemies.forEach((enemy) => {
-        enemy.move();
-        enemy.draw(ctx);
-    });
-
-    checkCoinCollection();
-    checkCollisions();
-    requestAnimationFrame(updateGame);
-}
 
 
 // Verificar colisiones entre el jugador y los enemigos
@@ -236,6 +230,8 @@ function checkCollisions() {
 }
 
 function checkCoinCollection() {
+    let allCoinsCollected = true;
+
     coins.forEach((coin) => {
         if (
             !coin.collected &&
@@ -247,14 +243,110 @@ function checkCoinCollection() {
             coin.collected = true; // Marca la moneda como recolectada
             console.log("¡Moneda recolectada!");
         }
+
+        if (!coin.collected) {
+            allCoinsCollected = false;
+        }
     });
+
+    return allCoinsCollected;
 }
 
+
 function playerDied() {
-    alert("¡Has muerto! Reiniciando nivel...");
-    player.posX = initialPlayerPosition.x; // Reinicia la posición X del jugador
-    player.posY = initialPlayerPosition.y; // Reinicia la posición Y del jugador
+    updateDeathCounter(); // Incrementa el contador de muertes
+
+    // Reinicia la posición inicial del jugador
+    player.posX = initialPlayerPosition.x;
+    player.posY = initialPlayerPosition.y;
+
+    // Reinicia el estado de las monedas
+    coins.forEach((coin) => {
+        coin.collected = false; // Marca todas las monedas como no recolectadas
+    });
+
+    console.log("El jugador ha muerto, se reinició su posición y las monedas volvieron a aparecer.");
 }
+
+function updateDeathCounter() {
+    deathCount++; // Incrementa el contador
+    const deathCounterElement = document.getElementById('deathCounter'); // Obtén el elemento HTML
+    if (deathCounterElement) {
+        deathCounterElement.textContent = deathCount; // Actualiza el contenido del contador
+    }
+}
+
+///////////////////////////////////MENSAJE NIVEL 1
+
+function checkCompletion1() {
+    const col = Math.floor(player.posX / 50); // Columna en la que está el jugador
+    const row = Math.floor(player.posY / 50); // Fila en la que está el jugador
+
+    // Verifica si el jugador está en una celda verde (valor 3) y ha recolectado todas las monedas
+    if (level1Map[row][col] === 3 && checkCoinCollection()) {
+        mostrarMensaje1("¡Nivel Completado!");
+        resetNivel(); // Reinicia el nivel o avanza al siguiente
+    }
+}
+
+function mostrarMensaje1(mensaje1) {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // Fondo semitransparente
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = "#fff"; // Color del texto
+    ctx.font = "50px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText(mensaje1, canvas.width / 2, canvas.height / 2);
+}
+
+////////////////////////////////////////MENSAJE NIVEL 2
+
+function checkCompletion2() {
+    const col = Math.floor(player.posX / 50); // Columna en la que está el jugador
+    const row = Math.floor(player.posY / 50); // Fila en la que está el jugador
+
+    // Verifica si el jugador está en una celda verde (valor 3) y ha recolectado todas las monedas
+    if (level2Map[row][col] === 3 && checkCoinCollection()) {
+        mostrarMensaje2("Terminaste el juego");
+        resetNivel(); // Reinicia el nivel o avanza al siguiente
+    }
+}
+
+function mostrarMensaje2(mensaje2) {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // Fondo semitransparente
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.fillStyle = "#fff"; // Color del texto
+    ctx.font = "50px Arial";
+    ctx.textAlign = "center";
+    ctx.fillText(mensaje2, canvas.width / 2, canvas.height / 2);
+}
+
+
+//////////////////////////////////////////
+
+// Actualizar el juego
+function updateGame() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawMap(ctx, level1Map);
+    movePlayer(); // Aplica movimiento con restricciones
+    player.draw(ctx);
+
+    coins.forEach((coin) => coin.draw(ctx));
+    enemies.forEach((enemy) => {
+        enemy.move();
+        enemy.draw(ctx);
+    });
+
+    checkCoinCollection();
+    checkCollisions();
+    checkCompletion1(); // Verifica si el nivel ha sido completado
+    checkCompletion2();
+
+    requestAnimationFrame(updateGame);
+}
+
 
 // Ajustar tamaño del canvas
 function resizeCanvas() {
@@ -281,7 +373,3 @@ document.addEventListener("keyup", (event) => {
     }
 });
 
-// Inicializar el juego
-window.onload = () => {
-    loadLevel1(); // Carga el nivel 1 al iniciar
-};

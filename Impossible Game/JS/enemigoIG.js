@@ -6,46 +6,38 @@ class Enemigo {
         this.speed = _speed;
         this.direction = _direction;
         this.canvasHeight = _canvasHeight;
+        this.bordeColor = "#000000"; // Color del borde (negro)
+        this.bordeAncho = 2; // Ancho del borde
     }
 
     draw(ctx) {
+        // Dibujar el relleno del enemigo
         ctx.fillStyle = "#0000ff";
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
         ctx.fill();
+
+        // Dibujar el borde del enemigo
+        ctx.lineWidth = this.bordeAncho;
+        ctx.strokeStyle = this.bordeColor;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.stroke();
     }
+
     move() {
         const nextY = this.y + this.speed * this.direction;
         const col = Math.floor(this.x / 50); // Columna actual
         const row = Math.floor(nextY / 50); // Conversión a fila en el mapa
     
-        if (nextY + this.radius <= this.canvasHeight && nextY - this.radius >= 0 && level1Map[row][col] !== 4) {
+        if (
+            nextY + this.radius <= this.canvasHeight &&
+            nextY - this.radius >= 0 &&
+            level1Map[row][col] !== 4
+        ) {
             this.y = nextY;
         } else {
             this.direction *= -1; // Cambia de dirección si encuentra un 4 o un límite
         }
     }
-    
 }
-
-
-
-
-/*
-export const obstacles = [
-    { x: 200, y: 100, radius: 15, speed: 3, direction: 1, initialY: 100, initialDirection: 1 },
-    { x: 400, y: 300, radius: 15, speed: 3, direction: -1, initialY: 300, initialDirection: -1 },
-    { x: 600, y: 200, radius: 15, speed: 3, direction: 1, initialY: 200, initialDirection: 1 }
-];
-
-
-
-export function moveObstacles() {
-    obstacles.forEach(obstacle => {
-        obstacle.y += obstacle.speed * obstacle.direction;
-        if (obstacle.y + obstacle.radius > canvas.height || obstacle.y - obstacle.radius < 0) {
-            obstacle.direction *= -1;
-        }
-    });
-}
-*/

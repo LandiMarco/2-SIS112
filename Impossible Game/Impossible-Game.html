@@ -50,10 +50,10 @@
 </head>
 <body>
 
-        <div class="buttons">
-            <button onclick="loadLevel1()">Nivel 1</button>
-            <button onclick="loadLevel2()">Nivel 2</button>
-        </div>
+    <div class="buttons">
+        <button onclick="loadLevel1()">Nivel 1</button>
+        <button onclick="loadLevel2()">Nivel 2</button>
+    </div>
     <canvas id="gameCanvas" width="1000" height="400"></canvas>
     <div class="counter">
         Muertes: <span id="deathCounter">0</span>
@@ -64,47 +64,5 @@
     <script src="js/monedasIG.js"></script>
     <script src="js/enemigoIG.js"></script>
     <script src="js/mainIG.js"></script>
-s    
-    <script>
-        let deathCount = 0;
-
-        // Actualizar contador de muertes
-        function updateDeathCounter() {
-            deathCount++;
-            document.getElementById('deathCounter').textContent = deathCount;
-        }
-
-        // Cargar diferentes niveles
-        function loadLevel(level) {
-            console.log(`Intentando cargar el nivel ${level}`);
-            if (level === 1) {
-                try {
-                    loadLevel1(); // Llama a la función para cargar el nivel 1
-                } catch (error) {
-                    console.error("Error cargando el nivel 1:", error);
-                    alert("Hubo un problema al cargar el nivel 1. Revisa la consola para más detalles.");
-                }
-            } else {
-                alert(`Nivel ${level} no configurado aún.`);
-            }
-        }
-
-        // Llama a esta función cada vez que el jugador muera
-        function playerDied() {
-            updateDeathCounter();
-            console.log("El jugador ha muerto. Contador de muertes actualizado.");
-        }
-
-        // Agregar un listener para verificar si el canvas carga correctamente
-        window.onload = () => {
-            const canvas = document.getElementById('gameCanvas');
-            if (canvas && canvas.getContext) {
-                console.log("Canvas cargado correctamente.");
-            } else {
-                console.error("El canvas no pudo cargarse. Verifica el ID o la inicialización.");
-            }
-        };
-
-    </script>
 </body>
 </html>

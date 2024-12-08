@@ -12,8 +12,16 @@ class Rojo {
     }
 
     draw(ctx) {
+        const bordeExtra = 3; // 12% más grueso
+        const bordeTotal = 25 + bordeExtra * 2; // Tamaño del borde total
+
+        // Dibuja el borde negro
+        ctx.fillStyle = "#000000"; // Color del borde
+        ctx.fillRect(this.posX - bordeExtra, this.posY - bordeExtra, bordeTotal, bordeTotal);
+
+        // Dibuja el jugador rojo
         ctx.fillStyle = "#ff0000"; // Color del jugador
-        ctx.fillRect(this.posX, this.posY, 25, 25); // Dibuja el rectángulo del jugador
+        ctx.fillRect(this.posX, this.posY, 25, 25); // Rectángulo del jugador
     }
 
     move() {
