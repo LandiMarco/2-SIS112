@@ -8,8 +8,10 @@ let player; // Variable para el jugador
 let enemies; // Array de enemigos
 let initialPlayerPosition = { x: 50, y: 150 }; 
 let deathCount = 0; // Variable global para almacenar el número de muertes
-
-
+let currentLevel = 1; // Nivel actual
+let gameLoopId; // ID del bucle de animación
+let loadingScreen = false; // Indica si estamos mostrando el mensaje de carga
+let loadingMessage = ""; // Mensaje que se muestra en la pantalla negra
 
 ////////////////////////////MAPAS
 
@@ -45,6 +47,8 @@ const level2Map = [
 // Cargar nivel 1
 function loadLevel1() {
     console.log("Cargando nivel 1");
+    stopGameLoop(); // Detiene el loop del juego actual
+    currentLevel = 1; // Actualiza el nivel actual
     resizeCanvas();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -84,16 +88,15 @@ function loadLevel1() {
     
     console.log("Enemigos inicializados:", enemies);
 
-    drawMap(ctx, level1Map); // Dibuja el mapa
-    player.draw(ctx); // Dibuja al jugador
-    enemies.forEach((enemy) => enemy.draw(ctx)); // Dibuja los enemigos
-    coins.forEach((coin) => coin.draw(ctx)); // Dibuja las monedas
+
     updateGame(); // Inicia el loop del juego
 }
 
 // Cargar nivel 2
 function loadLevel2() {
     console.log("Cargando nivel 2");
+    stopGameLoop(); // Detiene el loop del juego actual
+    currentLevel = 2; // Actualiza el nivel actual
     resizeCanvas();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -130,10 +133,7 @@ function loadLevel2() {
     
     console.log("Enemigos inicializados:", enemies);
 
-    drawMap(ctx, level2Map); // Dibuja el mapa
-    player.draw(ctx); // Dibuja al jugador
-    enemies.forEach((enemy) => enemy.draw(ctx)); // Dibuja los enemigos
-    coins.forEach((coin) => coin.draw(ctx)); // Dibuja las monedas
+
     updateGame(); // Inicia el loop del juego
 }
 
@@ -276,18 +276,43 @@ function updateDeathCounter() {
     }
 }
 
-///////////////////////////////////MENSAJE NIVEL 1
-
-function checkCompletion1() {
-    const col = Math.floor(player.posX / 50); // Columna en la que está el jugador
-    const row = Math.floor(player.posY / 50); // Fila en la que está el jugador
-
-    // Verifica si el jugador está en una celda verde (valor 3) y ha recolectado todas las monedas
-    if (level1Map[row][col] === 3 && checkCoinCollection()) {
-        mostrarMensaje1("¡Nivel Completado!");
-        resetNivel(); // Reinicia el nivel o avanza al siguiente
+// Función para detener el loop del juego
+function stopGameLoop() {
+    if (gameLoopId) {
+        cancelAnimationFrame(gameLoopId);
+        gameLoopId = null; // Reiniciar el ID
     }
 }
+
+
+///////////////////////////////////PASAR AL OTRO NIVEL
+
+// Función para verificar si se completa el nivel
+function checkCompletion() {
+    const col = Math.floor(player.posX / 50); // Columna actual del jugador
+    const row = Math.floor(player.posY / 50); // Fila actual del jugador
+
+    if (currentLevel === 1) {
+        if (level1Map[row][col] === 3 && checkCoinCollection()) {
+            mostrarMensaje1("¡Nivel 1 Completado!");
+            setTimeout(() => {
+                showLoadingScreen("Cargando Nivel 2", 5000); // Muestra la pantalla negra por 5 segundos
+                loadLevel2(); // Inicia el nuevo nivel inmediatamente
+            }, 2000); // Espera 2 segundos después del mensaje de nivel completado
+        }
+    } else if (currentLevel === 2) {
+        if (level2Map[row][col] === 3 && checkCoinCollection()) {
+            mostrarMensaje2("¡Terminaste el juego!");
+            setTimeout(() => {
+                stopGameLoop(); // Detiene el juego
+            }, 2000); // Espera 2 segundos antes de terminar
+        }
+    }
+}
+
+
+
+///////////////////////////////MENSAJES
 
 function mostrarMensaje1(mensaje1) {
     ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // Fondo semitransparente
@@ -299,18 +324,7 @@ function mostrarMensaje1(mensaje1) {
     ctx.fillText(mensaje1, canvas.width / 2, canvas.height / 2);
 }
 
-////////////////////////////////////////MENSAJE NIVEL 2
 
-function checkCompletion2() {
-    const col = Math.floor(player.posX / 50); // Columna en la que está el jugador
-    const row = Math.floor(player.posY / 50); // Fila en la que está el jugador
-
-    // Verifica si el jugador está en una celda verde (valor 3) y ha recolectado todas las monedas
-    if (level2Map[row][col] === 3 && checkCoinCollection()) {
-        mostrarMensaje2("Terminaste el juego");
-        resetNivel(); // Reinicia el nivel o avanza al siguiente
-    }
-}
 
 function mostrarMensaje2(mensaje2) {
     ctx.fillStyle = "rgba(0, 0, 0, 0.5)"; // Fondo semitransparente
@@ -322,31 +336,20 @@ function mostrarMensaje2(mensaje2) {
     ctx.fillText(mensaje2, canvas.width / 2, canvas.height / 2);
 }
 
+///////////////////////////////////////////PANTALLA DE CARGA
 
-//////////////////////////////////////////
+function showLoadingScreen(message, duration) {
+    loadingScreen = true; // Activa el estado de pantalla de carga
+    loadingMessage = message; // Establece el mensaje de carga
 
-// Actualizar el juego
-function updateGame() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    drawMap(ctx, level1Map);
-    movePlayer(); // Aplica movimiento con restricciones
-    player.draw(ctx);
-
-    coins.forEach((coin) => coin.draw(ctx));
-    enemies.forEach((enemy) => {
-        enemy.move();
-        enemy.draw(ctx);
-    });
-
-    checkCoinCollection();
-    checkCollisions();
-    checkCompletion1(); // Verifica si el nivel ha sido completado
-    checkCompletion2();
-
-    requestAnimationFrame(updateGame);
+    setTimeout(() => {
+        loadingScreen = false; // Desactiva la pantalla de carga después de la duración
+        loadingMessage = ""; // Limpia el mensaje
+    }, duration);
 }
 
+
+/////////////////////////////////////////// TECLADO
 
 // Ajustar tamaño del canvas
 function resizeCanvas() {
@@ -373,3 +376,52 @@ document.addEventListener("keyup", (event) => {
     }
 });
 
+
+/////////////////////////ACTUALIZAR JUEGO
+
+function updateGame() {
+    if (loadingScreen) {
+        // Pantalla completamente negra
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        // Texto del mensaje
+        ctx.fillStyle = "white";
+        ctx.font = "50px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText(loadingMessage, canvas.width / 2, canvas.height / 2);
+
+        // El juego sigue corriendo en el fondo
+        gameLoopId = requestAnimationFrame(updateGame);
+        return; // Evita dibujar el resto del juego mientras está la pantalla negra
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    if (currentLevel === 1) {
+        drawMap(ctx, level1Map);
+    } else if (currentLevel === 2) {
+        drawMap(ctx, level2Map);
+    }
+
+    movePlayer(); // Aplica movimiento con restricciones
+    player.draw(ctx);
+
+    // Dibuja monedas y enemigos
+    coins.forEach((coin) => coin.draw(ctx));
+    enemies.forEach((enemy) => {
+        enemy.move();
+        enemy.draw(ctx);
+    });
+
+    checkCoinCollection();
+    checkCollisions();
+    checkCompletion(); // Verifica si el nivel ha sido completado
+
+    gameLoopId = requestAnimationFrame(updateGame); // Guarda el ID del bucle
+}
+
+
+
+// Inicia el juego con el nivel 1
+loadLevel1();
