@@ -46,7 +46,6 @@ const level2Map = [
 
 // Cargar nivel 1
 function loadLevel1() {
-    console.log("Cargando nivel 1");
     stopGameLoop(); // Detiene el loop del juego actual
     currentLevel = 1; // Actualiza el nivel actual
     resizeCanvas();
@@ -56,7 +55,6 @@ function loadLevel1() {
 
     // Inicialización del jugador
     player = new Rojo(50, 150, "right", 3, canvas.width, canvas.height);
-    console.log("Jugador inicializado:", player);
     player = new Rojo(initialPlayerPosition.x, initialPlayerPosition.y, "right", 3, canvas.width, canvas.height);
 
 
@@ -85,16 +83,11 @@ function loadLevel1() {
         new Enemigo(725, 350, 20, 2, 1, canvas.height),
     ];
 
-    
-    console.log("Enemigos inicializados:", enemies);
-
-
     updateGame(); // Inicia el loop del juego
 }
 
 // Cargar nivel 2
 function loadLevel2() {
-    console.log("Cargando nivel 2");
     stopGameLoop(); // Detiene el loop del juego actual
     currentLevel = 2; // Actualiza el nivel actual
     resizeCanvas();
@@ -104,7 +97,6 @@ function loadLevel2() {
 
     // Inicializacion del jugador
     player = new Rojo(50, 150, "right", 3, canvas.width, canvas.height);
-    console.log("Jugador inicializado:", player);
 
     coins = [
         new Moneda(225, 75, 20, 20),
@@ -130,9 +122,6 @@ function loadLevel2() {
         new Enemigo(625, 350, 20, 2, 1, canvas.height),
         new Enemigo(725, 350, 20, 2, 1, canvas.height),
     ];
-    
-    console.log("Enemigos inicializados:", enemies);
-
 
     updateGame(); // Inicia el loop del juego
 }
@@ -264,8 +253,6 @@ function playerDied() {
     coins.forEach((coin) => {
         coin.collected = false; // Marca todas las monedas como no recolectadas
     });
-
-    console.log("El jugador ha muerto, se reinició su posición y las monedas volvieron a aparecer.");
 }
 
 function updateDeathCounter() {
